@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Jobs</title>
+</head>
+<body>
+    <h1>Jobs Offered by the Company</h1>
+    <ul>
+        {% for edu_data in edu_data %}
+            <li>
+                <!-- <h2>{{ job.job_title }}</h2> -->
+                <p>Description: {{ edu_data.qualifiction_type }}</p>
+                <p>Employment Type: {{ edu_data.year_completed }}</p>
+
+
+                <a href="{% url 'edit_eduaction_data' edu_id=edu_data.id %}">Edit</a>
+                <a href="{% url 'delete_eduaction_data' edu_id=edu_data.id %}">Delete</a>
+
+
+            </li>
+        {% empty %}
+            <li>No jobs available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

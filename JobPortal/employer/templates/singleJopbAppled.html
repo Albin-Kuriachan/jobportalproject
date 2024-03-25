@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Experiences</title>
+</head>
+<body>
+    <h1>Single Applied Data {{ apply_job.job.job_title }}</h1>
+    <ul>
+    {% for apply_job in appleddata %}
+        <li>Candidate: {{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}</li>
+        <li>Job Title: {{ apply_job.job.job_title }}</li>
+        <li>Qualification:
+            <ul>
+            {% for qualification in apply_job.qualification.all %}
+                <li>{{ qualification.qualifiction_type.name }} - {{ qualification.course.name }} </li>
+            {% endfor %}
+            </ul>
+        </li>
+        <li>Experiences:
+            <ul>
+            {% for experience in apply_job.experiences.all %}
+                <li>{{ experience.companyname }} - {{ experience.numberofyears }} years</li>
+            {% endfor %}
+            </ul>
+        </li>
+        <hr>
+    {% endfor %}
+    </ul>
+</body>
+</html>

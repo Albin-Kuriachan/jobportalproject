@@ -1,18 +1,1019 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <a href="{% url 'company_info' %}"> Company info</a><br><br> 
-    <a href="{% url 'postjob' %}">Post Job</a> <br><br>
-    <a href="{% url 'display_job_post' %}">Display Job post</a><br><br>
-    <a href="{% url 'company_logout' %}">logout</a>   <br><br>
-    <a href="{% url 'appliedCadidate' %}">Job applied details</a>   <br><br>
 
 
-</body>
-</html>
+{% extends 'employer_base.html' %}
+{% block content %}
+
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+                        <div id="main" class="site-main clearfix" role="main">
+
+                            <div class="box-dashboard-wrapper employer-dashboard-wrapper">
+                                <h3 class="title">Applications statistics</h3>
+                                <div class="space-30">
+                                    <div class="statistics row">
+                                        <div class="col-xs-12 col-lg-3 col-sm-6">
+                                            <div class="inner-header">
+                                                <div class="posted-jobs list-item flex-middle justify-content-between text-right">
+                                                    <div class="icon-wrapper">
+                                                        <div class="icon">
+                                                            <i class="bi bi-briefcase"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inner">
+                                                        <div class="number-count">{{job_post_count}}</div>
+                                                        <span>Posted Jobs</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-lg-3 col-sm-6">
+                                            <div class="inner-header">
+                                                <div class="review-count-wrapper list-item flex-middle justify-content-between text-right">
+                                                    <div class="icon-wrapper">
+                                                        <div class="icon">
+                                                            <i class="bi bi-chat"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inner">
+                                                        <div class="number-count">{{pending_count}}</div>
+                                                        <span>Pending</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-lg-3 col-sm-6">
+                                            <div class="inner-header">
+                                                <div class="shortlist list-item flex-middle justify-content-between text-right">
+                                                    <div class="icon-wrapper">
+                                                        <div class="icon">
+                                                            <i class="bi bi-bookmark"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inner">
+                                                        <div class="number-count">{{shortlist_count}}</div>
+                                                        <span>Shortlisted</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+<!--										  <div class="col-xs-12 col-lg-3 col-sm-6">-->
+<!--                                            <div class="inner-header">-->
+<!--                                                <div class="shortlist list-item flex-middle justify-content-between text-right">-->
+<!--                                                    <div class="icon-wrapper">-->
+<!--                                                        <div class="icon">-->
+<!--                                                            <i class="flaticon-bookmark"></i>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="inner">-->
+<!--                                                        <div class="number-count">{{shortlist_count}}</div>-->
+<!--                                                        <span>Shortlisted</span>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+										<div class="col-xs-12 col-lg-3 col-sm-6">
+                                            <div class="inner-header">
+                                                <div class="views-count-wrapper list-item flex-middle justify-content-between text-right">
+                                                    <div class="icon-wrapper">
+                                                        <div class="icon">
+                                                            <i class="bi bi-resume"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inner">
+                                                        <div class="number-count">{{rejected_count}}</div>
+                                                        <span>Rejected</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="inner-list">
+                                    <h3 class="title-small">Recent Applicants</h3>
+                                    <div class="applicants">
+
+
+									    {% for apply_job in recent_apply %}
+
+
+                                        <article class="applicants-job job-applicant-wrapper viewed post-11256 job_applicant type-job_applicant status-publish hentry">
+                                            <div class="candidate-list candidate-archive-layout flex-middle-sm">
+                                                <div class="candidate-info">
+                                                    <div class="flex-middle">
+                                                        <div class="candidate-info-content">
+                                                            <div class="title-wrapper flex-middle-sm">
+                                                                <h2 class="candidate-title">
+                                                                    <a href="{% url 'apply_candidate_profile' pk=apply_job.candidate.id %}">{{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}</a>
+                                                                </h2>
+
+<!--                                                                <span class="label label-info pending"></span> -->
+
+																 {% if apply_job.status == "Pending" %}
+                        <span class="label label-warning ">Pending</span>
+                        {% elif apply_job.status == "Approved" %}
+                        <span class="label label-success">Approved</span>
+                        {% elif apply_job.status == "Rejected" %}
+                        <span class="label label-danger">Rejected</span>
+                        {% else %}
+                        <span class="label label-info pending">Shortlisted</span>
+                        {% endif %}
+
+
+
+															</div>
+                                                            <div class="job-metas">
+                                                                <h4 class="job-title">
+                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">{{ apply_job.job.job_title }}</a>
+                                                                </h4>
+                                                                <div class="date">
+                                                                    <i class="bi bi-calenda3r"></i> {{ apply_job.apply_date }} </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ali-right">
+                                                    <div class="applicant-action-button action-button">
+                                                        <a data-toggle="tooltip" href="#job-apply-create-meeting-form-wrapper-11256-11255" class="btn-create-meeting-job-applied btn-action-icon" title="Create Meeting"><i class="ti-plus"></i></a>
+                                                        <div id="job-apply-create-meeting-form-wrapper-11256-11255" class="job-apply-email-form-wrapper mfp-hide">
+                                                            <div class="inner">
+                                                                <h2 class="widget-title"><span>Create Meeting</span></h2>
+
+                                                                <form id="job-apply-create-meeting-form-11256-11255" class="create-meeting-form" method="post" autocomplete="off">
+                                                                    <div class="form-group">
+                                                                        <label>Date</label>
+                                                                        <input type="text" class="form-control style2 datetimepicker-date" name="date_display" autocomplete="false" placeholder="March 26, 2024" required="required" data-date_format="MM d, yy" data-id="#datetimepicker-date-idfVU6O">
+
+                                                                        <input id="datetimepicker-date-idfVU6O" type="hidden" class="form-control" name="date" required="required">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Time</label>
+                                                                        <select class="select-time-hour form-control style2" name="time" placeholder="7:38 pm" required="required">
+
+											<option value="00:00">12:00 am</option>
+											<option value="00:15">12:15 am</option>
+											<option value="00:30">12:30 am</option>
+											<option value="00:45">12:45 am</option>
+											<option value="01:00">1:00 am</option>
+											<option value="01:15">1:15 am</option>
+											<option value="01:30">1:30 am</option>
+											<option value="01:45">1:45 am</option>
+											<option value="02:00">2:00 am</option>
+											<option value="02:15">2:15 am</option>
+											<option value="02:30">2:30 am</option>
+											<option value="02:45">2:45 am</option>
+											<option value="03:00">3:00 am</option>
+											<option value="03:15">3:15 am</option>
+											<option value="03:30">3:30 am</option>
+											<option value="03:45">3:45 am</option>
+											<option value="04:00">4:00 am</option>
+											<option value="04:15">4:15 am</option>
+											<option value="04:30">4:30 am</option>
+											<option value="04:45">4:45 am</option>
+											<option value="05:00">5:00 am</option>
+											<option value="05:15">5:15 am</option>
+											<option value="05:30">5:30 am</option>
+											<option value="05:45">5:45 am</option>
+											<option value="06:00">6:00 am</option>
+											<option value="06:15">6:15 am</option>
+											<option value="06:30">6:30 am</option>
+											<option value="06:45">6:45 am</option>
+											<option value="07:00">7:00 am</option>
+											<option value="07:15">7:15 am</option>
+											<option value="07:30">7:30 am</option>
+											<option value="07:45">7:45 am</option>
+											<option value="08:00">8:00 am</option>
+											<option value="08:15">8:15 am</option>
+											<option value="08:30">8:30 am</option>
+											<option value="08:45">8:45 am</option>
+											<option value="09:00">9:00 am</option>
+											<option value="09:15">9:15 am</option>
+											<option value="09:30">9:30 am</option>
+											<option value="09:45">9:45 am</option>
+											<option value="10:00">10:00 am</option>
+											<option value="10:15">10:15 am</option>
+											<option value="10:30">10:30 am</option>
+											<option value="10:45">10:45 am</option>
+											<option value="11:00">11:00 am</option>
+											<option value="11:15">11:15 am</option>
+											<option value="11:30">11:30 am</option>
+											<option value="11:45">11:45 am</option>
+											<option value="12:00">12:00 pm</option>
+											<option value="12:15">12:15 pm</option>
+											<option value="12:30">12:30 pm</option>
+											<option value="12:45">12:45 pm</option>
+											<option value="13:00">1:00 pm</option>
+											<option value="13:15">1:15 pm</option>
+											<option value="13:30">1:30 pm</option>
+											<option value="13:45">1:45 pm</option>
+											<option value="14:00">2:00 pm</option>
+											<option value="14:15">2:15 pm</option>
+											<option value="14:30">2:30 pm</option>
+											<option value="14:45">2:45 pm</option>
+											<option value="15:00">3:00 pm</option>
+											<option value="15:15">3:15 pm</option>
+											<option value="15:30">3:30 pm</option>
+											<option value="15:45">3:45 pm</option>
+											<option value="16:00">4:00 pm</option>
+											<option value="16:15">4:15 pm</option>
+											<option value="16:30">4:30 pm</option>
+											<option value="16:45">4:45 pm</option>
+											<option value="17:00">5:00 pm</option>
+											<option value="17:15">5:15 pm</option>
+											<option value="17:30">5:30 pm</option>
+											<option value="17:45">5:45 pm</option>
+											<option value="18:00">6:00 pm</option>
+											<option value="18:15">6:15 pm</option>
+											<option value="18:30">6:30 pm</option>
+											<option value="18:45">6:45 pm</option>
+											<option value="19:00">7:00 pm</option>
+											<option value="19:15">7:15 pm</option>
+											<option value="19:30">7:30 pm</option>
+											<option value="19:45">7:45 pm</option>
+											<option value="20:00">8:00 pm</option>
+											<option value="20:15">8:15 pm</option>
+											<option value="20:30">8:30 pm</option>
+											<option value="20:45">8:45 pm</option>
+											<option value="21:00">9:00 pm</option>
+											<option value="21:15">9:15 pm</option>
+											<option value="21:30">9:30 pm</option>
+											<option value="21:45">9:45 pm</option>
+											<option value="22:00">10:00 pm</option>
+											<option value="22:15">10:15 pm</option>
+											<option value="22:30">10:30 pm</option>
+											<option value="22:45">10:45 pm</option>
+											<option value="23:00">11:00 pm</option>
+											<option value="23:15">11:15 pm</option>
+											<option value="23:30">11:30 pm</option>
+											<option value="23:45">11:45 pm</option>
+										<option value="23:59">11:59 pm</option>
+				</select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Time Duration</label>
+                                                                        <input type="text" class="form-control style2" name="time_duration" placeholder="30" required="required">
+                                                                    </div>
+
+                                                                    <div class="form-group space-30">
+                                                                        <label>Message</label>
+                                                                        <textarea class="form-control style2" name="message" placeholder="Message" required="required"></textarea>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label>Zoom Meeting</label>
+                                                                        <input type="checkbox" name="zoom_meeting" value="1">
+                                                                    </div>
+
+                                                                    <!-- /.form-group -->
+
+                                                                    <input type="hidden" id="nonce" name="nonce" value="31ad8d3c65" /><input type="hidden" name="_wp_http_referer" value="/wp-demo/superio/user-dashboard/" /> <input type="hidden" name="action"
+                                                                        value="wp_job_board_pro_ajax_create_meeting">
+                                                                    <input type="hidden" name="application_id" value="11256">
+                                                                    <button class="button btn btn-theme btn-block" name="create-meeting">Create Meeting</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                        <a data-toggle="tooltip" href="javascript:void(0);" class="btn-approve-job-applied btn-action-icon approve" data-applicant_id="11256" data-nonce="16234e1299" title="Approve Application"><i class="ti-check"></i></a>
+
+                                                        <a data-toggle="tooltip" title="Reject Application" href="javascript:void(0);" class="btn-action-icon btn-reject-job-applied rejec" data-applicant_id="11256" data-nonce="7f6ddc731d"><i class="ti-loop"></i></a>
+
+                                                        <a data-toggle="tooltip" href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11255" title="Download CV" class="btn-action-icon download"><i class="ti-download"></i></a>
+
+                                                        <a data-toggle="tooltip" title="Remove" href="javascript:void(0);" class="btn-action-icon btn-remove-job-applied remove" data-applicant_id="11256" data-nonce="af75d9f6fd"><i class="ti-close"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <!-- #post-## -->
+
+										{% endfor %}
+
+
+
+<!--                                        <article class="applicants-job job-applicant-wrapper clearfix viewed post-11218 job_applicant type-job_applicant status-publish hentry">-->
+
+<!--                                            <div class="candidate-list candidate-archive-layout flex-middle-sm">-->
+<!--                                                <div class="candidate-info">-->
+<!--                                                    <div class="flex-middle">-->
+<!--                                                        <div class="candidate-info-content">-->
+<!--                                                            <div class="title-wrapper flex-middle-sm">-->
+<!--                                                                <h2 class="candidate-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/candidate/mickael-ohayon/?applicant_id=11218&#038;candidate_id=11217&#038;action=view-profile" rel="bookmark">mickael.ohayon</a>-->
+<!--                                                                </h2>-->
+
+<!--                                                                <span class="label label-success approved">Approved</span> </div>-->
+<!--                                                            <div class="job-metas">-->
+<!--                                                                <h4 class="job-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">Junior Graphic Designer (Web)</a>-->
+<!--                                                                </h4>-->
+<!--                                                                <div class="date">-->
+<!--                                                                    Applied date : March 20, 2024 </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="ali-right">-->
+<!--                                                    <div class="applicant-action-button action-button">-->
+
+<!--                                                        <a data-toggle="tooltip" href="#job-apply-create-meeting-form-wrapper-11218-11217" class="btn-create-meeting-job-applied btn-action-icon" title="Create Meeting"><i class="ti-plus"></i></a>-->
+<!--                                                        <div id="job-apply-create-meeting-form-wrapper-11218-11217" class="job-apply-email-form-wrapper mfp-hide">-->
+<!--                                                            <div class="inner">-->
+<!--                                                                <h2 class="widget-title"><span>Create Meeting</span></h2>-->
+
+<!--                                                                <form id="job-apply-create-meeting-form-11218-11217" class="create-meeting-form" method="post" autocomplete="off">-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Date</label>-->
+<!--                                                                        <input type="text" class="form-control style2 datetimepicker-date" name="date_display" autocomplete="false" placeholder="March 26, 2024" required="required" data-date_format="MM d, yy" data-id="#datetimepicker-date-idYuPhA">-->
+
+<!--                                                                        <input id="datetimepicker-date-idYuPhA" type="hidden" class="form-control" name="date" required="required">-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time</label>-->
+<!--                                                                        <select class="select-time-hour form-control style2" name="time" placeholder="7:38 pm" required="required">-->
+
+<!--											<option value="00:00">12:00 am</option>-->
+<!--											<option value="00:15">12:15 am</option>-->
+<!--											<option value="00:30">12:30 am</option>-->
+<!--											<option value="00:45">12:45 am</option>-->
+<!--											<option value="01:00">1:00 am</option>-->
+<!--											<option value="01:15">1:15 am</option>-->
+<!--											<option value="01:30">1:30 am</option>-->
+<!--											<option value="01:45">1:45 am</option>-->
+<!--											<option value="02:00">2:00 am</option>-->
+<!--											<option value="02:15">2:15 am</option>-->
+<!--											<option value="02:30">2:30 am</option>-->
+<!--											<option value="02:45">2:45 am</option>-->
+<!--											<option value="03:00">3:00 am</option>-->
+<!--											<option value="03:15">3:15 am</option>-->
+<!--											<option value="03:30">3:30 am</option>-->
+<!--											<option value="03:45">3:45 am</option>-->
+<!--											<option value="04:00">4:00 am</option>-->
+<!--											<option value="04:15">4:15 am</option>-->
+<!--											<option value="04:30">4:30 am</option>-->
+<!--											<option value="04:45">4:45 am</option>-->
+<!--											<option value="05:00">5:00 am</option>-->
+<!--											<option value="05:15">5:15 am</option>-->
+<!--											<option value="05:30">5:30 am</option>-->
+<!--											<option value="05:45">5:45 am</option>-->
+<!--											<option value="06:00">6:00 am</option>-->
+<!--											<option value="06:15">6:15 am</option>-->
+<!--											<option value="06:30">6:30 am</option>-->
+<!--											<option value="06:45">6:45 am</option>-->
+<!--											<option value="07:00">7:00 am</option>-->
+<!--											<option value="07:15">7:15 am</option>-->
+<!--											<option value="07:30">7:30 am</option>-->
+<!--											<option value="07:45">7:45 am</option>-->
+<!--											<option value="08:00">8:00 am</option>-->
+<!--											<option value="08:15">8:15 am</option>-->
+<!--											<option value="08:30">8:30 am</option>-->
+<!--											<option value="08:45">8:45 am</option>-->
+<!--											<option value="09:00">9:00 am</option>-->
+<!--											<option value="09:15">9:15 am</option>-->
+<!--											<option value="09:30">9:30 am</option>-->
+<!--											<option value="09:45">9:45 am</option>-->
+<!--											<option value="10:00">10:00 am</option>-->
+<!--											<option value="10:15">10:15 am</option>-->
+<!--											<option value="10:30">10:30 am</option>-->
+<!--											<option value="10:45">10:45 am</option>-->
+<!--											<option value="11:00">11:00 am</option>-->
+<!--											<option value="11:15">11:15 am</option>-->
+<!--											<option value="11:30">11:30 am</option>-->
+<!--											<option value="11:45">11:45 am</option>-->
+<!--											<option value="12:00">12:00 pm</option>-->
+<!--											<option value="12:15">12:15 pm</option>-->
+<!--											<option value="12:30">12:30 pm</option>-->
+<!--											<option value="12:45">12:45 pm</option>-->
+<!--											<option value="13:00">1:00 pm</option>-->
+<!--											<option value="13:15">1:15 pm</option>-->
+<!--											<option value="13:30">1:30 pm</option>-->
+<!--											<option value="13:45">1:45 pm</option>-->
+<!--											<option value="14:00">2:00 pm</option>-->
+<!--											<option value="14:15">2:15 pm</option>-->
+<!--											<option value="14:30">2:30 pm</option>-->
+<!--											<option value="14:45">2:45 pm</option>-->
+<!--											<option value="15:00">3:00 pm</option>-->
+<!--											<option value="15:15">3:15 pm</option>-->
+<!--											<option value="15:30">3:30 pm</option>-->
+<!--											<option value="15:45">3:45 pm</option>-->
+<!--											<option value="16:00">4:00 pm</option>-->
+<!--											<option value="16:15">4:15 pm</option>-->
+<!--											<option value="16:30">4:30 pm</option>-->
+<!--											<option value="16:45">4:45 pm</option>-->
+<!--											<option value="17:00">5:00 pm</option>-->
+<!--											<option value="17:15">5:15 pm</option>-->
+<!--											<option value="17:30">5:30 pm</option>-->
+<!--											<option value="17:45">5:45 pm</option>-->
+<!--											<option value="18:00">6:00 pm</option>-->
+<!--											<option value="18:15">6:15 pm</option>-->
+<!--											<option value="18:30">6:30 pm</option>-->
+<!--											<option value="18:45">6:45 pm</option>-->
+<!--											<option value="19:00">7:00 pm</option>-->
+<!--											<option value="19:15">7:15 pm</option>-->
+<!--											<option value="19:30">7:30 pm</option>-->
+<!--											<option value="19:45">7:45 pm</option>-->
+<!--											<option value="20:00">8:00 pm</option>-->
+<!--											<option value="20:15">8:15 pm</option>-->
+<!--											<option value="20:30">8:30 pm</option>-->
+<!--											<option value="20:45">8:45 pm</option>-->
+<!--											<option value="21:00">9:00 pm</option>-->
+<!--											<option value="21:15">9:15 pm</option>-->
+<!--											<option value="21:30">9:30 pm</option>-->
+<!--											<option value="21:45">9:45 pm</option>-->
+<!--											<option value="22:00">10:00 pm</option>-->
+<!--											<option value="22:15">10:15 pm</option>-->
+<!--											<option value="22:30">10:30 pm</option>-->
+<!--											<option value="22:45">10:45 pm</option>-->
+<!--											<option value="23:00">11:00 pm</option>-->
+<!--											<option value="23:15">11:15 pm</option>-->
+<!--											<option value="23:30">11:30 pm</option>-->
+<!--											<option value="23:45">11:45 pm</option>-->
+<!--										<option value="23:59">11:59 pm</option>-->
+<!--				</select>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time Duration</label>-->
+<!--                                                                        <input type="text" class="form-control style2" name="time_duration" placeholder="30" required="required">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group space-30">-->
+<!--                                                                        <label>Message</label>-->
+<!--                                                                        <textarea class="form-control style2" name="message" placeholder="Message" required="required"></textarea>-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Zoom Meeting</label>-->
+<!--                                                                        <input type="checkbox" name="zoom_meeting" value="1">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    &lt;!&ndash; /.form-group &ndash;&gt;-->
+
+<!--                                                                    <input type="hidden" id="nonce" name="nonce" value="31ad8d3c65" /><input type="hidden" name="_wp_http_referer" value="/wp-demo/superio/user-dashboard/" /> <input type="hidden" name="action"-->
+<!--                                                                        value="wp_job_board_pro_ajax_create_meeting">-->
+<!--                                                                    <input type="hidden" name="application_id" value="11218">-->
+<!--                                                                    <button class="button btn btn-theme btn-block" name="create-meeting">Create Meeting</button>-->
+<!--                                                                </form>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <a data-toggle="tooltip" href="javascript:void(0);" class="btn-undo-approve-job-applied btn-action-icon approve" data-applicant_id="11218" data-nonce="ce5ee9de93" title="Undo Approved"><i class="fa fa-undo"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11217" title="Download CV" class="btn-action-icon download"><i class="ti-download"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" title="Remove" href="javascript:void(0);" class="btn-action-icon btn-remove-job-applied remove" data-applicant_id="11218" data-nonce="af75d9f6fd"><i class="ti-close"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                        </article>-->
+                                        <!-- #post-## -->
+
+
+
+<!--                                        <article class="applicants-job job-applicant-wrapper clearfix viewed post-11215 job_applicant type-job_applicant status-publish hentry">-->
+
+<!--                                            <div class="candidate-list candidate-archive-layout flex-middle-sm">-->
+<!--                                                <div class="candidate-info">-->
+<!--                                                    <div class="flex-middle">-->
+<!--                                                        <div class="candidate-info-content">-->
+<!--                                                            <div class="title-wrapper flex-middle-sm">-->
+<!--                                                                <h2 class="candidate-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/candidate/ejsjjsnn/?applicant_id=11215&#038;candidate_id=11214&#038;action=view-profile" rel="bookmark">ejsjjsnn</a>-->
+<!--                                                                </h2>-->
+
+<!--                                                                <span class="label label-success approved">Approved</span> </div>-->
+<!--                                                            <div class="job-metas">-->
+<!--                                                                <h4 class="job-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">Junior Graphic Designer (Web)</a>-->
+<!--                                                                </h4>-->
+<!--                                                                <div class="date">-->
+<!--                                                                    Applied date : March 20, 2024 </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="ali-right">-->
+<!--                                                    <div class="applicant-action-button action-button">-->
+
+<!--                                                        <a data-toggle="tooltip" href="#job-apply-create-meeting-form-wrapper-11215-11214" class="btn-create-meeting-job-applied btn-action-icon" title="Create Meeting"><i class="ti-plus"></i></a>-->
+<!--                                                        <div id="job-apply-create-meeting-form-wrapper-11215-11214" class="job-apply-email-form-wrapper mfp-hide">-->
+<!--                                                            <div class="inner">-->
+<!--                                                                <h2 class="widget-title"><span>Create Meeting</span></h2>-->
+
+<!--                                                                <form id="job-apply-create-meeting-form-11215-11214" class="create-meeting-form" method="post" autocomplete="off">-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Date</label>-->
+<!--                                                                        <input type="text" class="form-control style2 datetimepicker-date" name="date_display" autocomplete="false" placeholder="March 26, 2024" required="required" data-date_format="MM d, yy" data-id="#datetimepicker-date-idAzbZ6">-->
+
+<!--                                                                        <input id="datetimepicker-date-idAzbZ6" type="hidden" class="form-control" name="date" required="required">-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time</label>-->
+<!--                                                                        <select class="select-time-hour form-control style2" name="time" placeholder="7:38 pm" required="required">-->
+
+<!--											<option value="00:00">12:00 am</option>-->
+<!--											<option value="00:15">12:15 am</option>-->
+<!--											<option value="00:30">12:30 am</option>-->
+<!--											<option value="00:45">12:45 am</option>-->
+<!--											<option value="01:00">1:00 am</option>-->
+<!--											<option value="01:15">1:15 am</option>-->
+<!--											<option value="01:30">1:30 am</option>-->
+<!--											<option value="01:45">1:45 am</option>-->
+<!--											<option value="02:00">2:00 am</option>-->
+<!--											<option value="02:15">2:15 am</option>-->
+<!--											<option value="02:30">2:30 am</option>-->
+<!--											<option value="02:45">2:45 am</option>-->
+<!--											<option value="03:00">3:00 am</option>-->
+<!--											<option value="03:15">3:15 am</option>-->
+<!--											<option value="03:30">3:30 am</option>-->
+<!--											<option value="03:45">3:45 am</option>-->
+<!--											<option value="04:00">4:00 am</option>-->
+<!--											<option value="04:15">4:15 am</option>-->
+<!--											<option value="04:30">4:30 am</option>-->
+<!--											<option value="04:45">4:45 am</option>-->
+<!--											<option value="05:00">5:00 am</option>-->
+<!--											<option value="05:15">5:15 am</option>-->
+<!--											<option value="05:30">5:30 am</option>-->
+<!--											<option value="05:45">5:45 am</option>-->
+<!--											<option value="06:00">6:00 am</option>-->
+<!--											<option value="06:15">6:15 am</option>-->
+<!--											<option value="06:30">6:30 am</option>-->
+<!--											<option value="06:45">6:45 am</option>-->
+<!--											<option value="07:00">7:00 am</option>-->
+<!--											<option value="07:15">7:15 am</option>-->
+<!--											<option value="07:30">7:30 am</option>-->
+<!--											<option value="07:45">7:45 am</option>-->
+<!--											<option value="08:00">8:00 am</option>-->
+<!--											<option value="08:15">8:15 am</option>-->
+<!--											<option value="08:30">8:30 am</option>-->
+<!--											<option value="08:45">8:45 am</option>-->
+<!--											<option value="09:00">9:00 am</option>-->
+<!--											<option value="09:15">9:15 am</option>-->
+<!--											<option value="09:30">9:30 am</option>-->
+<!--											<option value="09:45">9:45 am</option>-->
+<!--											<option value="10:00">10:00 am</option>-->
+<!--											<option value="10:15">10:15 am</option>-->
+<!--											<option value="10:30">10:30 am</option>-->
+<!--											<option value="10:45">10:45 am</option>-->
+<!--											<option value="11:00">11:00 am</option>-->
+<!--											<option value="11:15">11:15 am</option>-->
+<!--											<option value="11:30">11:30 am</option>-->
+<!--											<option value="11:45">11:45 am</option>-->
+<!--											<option value="12:00">12:00 pm</option>-->
+<!--											<option value="12:15">12:15 pm</option>-->
+<!--											<option value="12:30">12:30 pm</option>-->
+<!--											<option value="12:45">12:45 pm</option>-->
+<!--											<option value="13:00">1:00 pm</option>-->
+<!--											<option value="13:15">1:15 pm</option>-->
+<!--											<option value="13:30">1:30 pm</option>-->
+<!--											<option value="13:45">1:45 pm</option>-->
+<!--											<option value="14:00">2:00 pm</option>-->
+<!--											<option value="14:15">2:15 pm</option>-->
+<!--											<option value="14:30">2:30 pm</option>-->
+<!--											<option value="14:45">2:45 pm</option>-->
+<!--											<option value="15:00">3:00 pm</option>-->
+<!--											<option value="15:15">3:15 pm</option>-->
+<!--											<option value="15:30">3:30 pm</option>-->
+<!--											<option value="15:45">3:45 pm</option>-->
+<!--											<option value="16:00">4:00 pm</option>-->
+<!--											<option value="16:15">4:15 pm</option>-->
+<!--											<option value="16:30">4:30 pm</option>-->
+<!--											<option value="16:45">4:45 pm</option>-->
+<!--											<option value="17:00">5:00 pm</option>-->
+<!--											<option value="17:15">5:15 pm</option>-->
+<!--											<option value="17:30">5:30 pm</option>-->
+<!--											<option value="17:45">5:45 pm</option>-->
+<!--											<option value="18:00">6:00 pm</option>-->
+<!--											<option value="18:15">6:15 pm</option>-->
+<!--											<option value="18:30">6:30 pm</option>-->
+<!--											<option value="18:45">6:45 pm</option>-->
+<!--											<option value="19:00">7:00 pm</option>-->
+<!--											<option value="19:15">7:15 pm</option>-->
+<!--											<option value="19:30">7:30 pm</option>-->
+<!--											<option value="19:45">7:45 pm</option>-->
+<!--											<option value="20:00">8:00 pm</option>-->
+<!--											<option value="20:15">8:15 pm</option>-->
+<!--											<option value="20:30">8:30 pm</option>-->
+<!--											<option value="20:45">8:45 pm</option>-->
+<!--											<option value="21:00">9:00 pm</option>-->
+<!--											<option value="21:15">9:15 pm</option>-->
+<!--											<option value="21:30">9:30 pm</option>-->
+<!--											<option value="21:45">9:45 pm</option>-->
+<!--											<option value="22:00">10:00 pm</option>-->
+<!--											<option value="22:15">10:15 pm</option>-->
+<!--											<option value="22:30">10:30 pm</option>-->
+<!--											<option value="22:45">10:45 pm</option>-->
+<!--											<option value="23:00">11:00 pm</option>-->
+<!--											<option value="23:15">11:15 pm</option>-->
+<!--											<option value="23:30">11:30 pm</option>-->
+<!--											<option value="23:45">11:45 pm</option>-->
+<!--										<option value="23:59">11:59 pm</option>-->
+<!--				</select>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time Duration</label>-->
+<!--                                                                        <input type="text" class="form-control style2" name="time_duration" placeholder="30" required="required">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group space-30">-->
+<!--                                                                        <label>Message</label>-->
+<!--                                                                        <textarea class="form-control style2" name="message" placeholder="Message" required="required"></textarea>-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Zoom Meeting</label>-->
+<!--                                                                        <input type="checkbox" name="zoom_meeting" value="1">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    &lt;!&ndash; /.form-group &ndash;&gt;-->
+
+<!--                                                                    <input type="hidden" id="nonce" name="nonce" value="31ad8d3c65" /><input type="hidden" name="_wp_http_referer" value="/wp-demo/superio/user-dashboard/" /> <input type="hidden" name="action"-->
+<!--                                                                        value="wp_job_board_pro_ajax_create_meeting">-->
+<!--                                                                    <input type="hidden" name="application_id" value="11215">-->
+<!--                                                                    <button class="button btn btn-theme btn-block" name="create-meeting">Create Meeting</button>-->
+<!--                                                                </form>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <a data-toggle="tooltip" href="javascript:void(0);" class="btn-undo-approve-job-applied btn-action-icon approve" data-applicant_id="11215" data-nonce="ce5ee9de93" title="Undo Approved"><i class="fa fa-undo"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11214" title="Download CV" class="btn-action-icon download"><i class="ti-download"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" title="Remove" href="javascript:void(0);" class="btn-action-icon btn-remove-job-applied remove" data-applicant_id="11215" data-nonce="af75d9f6fd"><i class="ti-close"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                        </article>-->
+                                        <!-- #post-## -->
+
+
+
+<!--                                        <article class="applicants-job job-applicant-wrapper clearfix viewed post-11213 job_applicant type-job_applicant status-publish hentry">-->
+
+<!--                                            <div class="candidate-list candidate-archive-layout flex-middle-sm">-->
+<!--                                                <div class="candidate-info">-->
+<!--                                                    <div class="flex-middle">-->
+<!--                                                        <div class="candidate-info-content">-->
+<!--                                                            <div class="title-wrapper flex-middle-sm">-->
+<!--                                                                <h2 class="candidate-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/candidate/forestmantra/?applicant_id=11213&#038;candidate_id=11212&#038;action=view-profile" rel="bookmark">forestmantra</a>-->
+<!--                                                                </h2>-->
+
+<!--                                                                <span class="label label-success approved">Approved</span> </div>-->
+<!--                                                            <div class="job-metas">-->
+<!--                                                                <h4 class="job-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">Junior Graphic Designer (Web)</a>-->
+<!--                                                                </h4>-->
+<!--                                                                <div class="date">-->
+<!--                                                                    Applied date : March 20, 2024 </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="ali-right">-->
+<!--                                                    <div class="applicant-action-button action-button">-->
+
+<!--                                                        <a data-toggle="tooltip" href="#job-apply-create-meeting-form-wrapper-11213-11212" class="btn-create-meeting-job-applied btn-action-icon" title="Create Meeting"><i class="ti-plus"></i></a>-->
+<!--                                                        <div id="job-apply-create-meeting-form-wrapper-11213-11212" class="job-apply-email-form-wrapper mfp-hide">-->
+<!--                                                            <div class="inner">-->
+<!--                                                                <h2 class="widget-title"><span>Create Meeting</span></h2>-->
+
+<!--                                                                <form id="job-apply-create-meeting-form-11213-11212" class="create-meeting-form" method="post" autocomplete="off">-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Date</label>-->
+<!--                                                                        <input type="text" class="form-control style2 datetimepicker-date" name="date_display" autocomplete="false" placeholder="March 26, 2024" required="required" data-date_format="MM d, yy" data-id="#datetimepicker-date-idNR0SC">-->
+
+<!--                                                                        <input id="datetimepicker-date-idNR0SC" type="hidden" class="form-control" name="date" required="required">-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time</label>-->
+<!--                                                                        <select class="select-time-hour form-control style2" name="time" placeholder="7:38 pm" required="required">-->
+
+<!--											<option value="00:00">12:00 am</option>-->
+<!--											<option value="00:15">12:15 am</option>-->
+<!--											<option value="00:30">12:30 am</option>-->
+<!--											<option value="00:45">12:45 am</option>-->
+<!--											<option value="01:00">1:00 am</option>-->
+<!--											<option value="01:15">1:15 am</option>-->
+<!--											<option value="01:30">1:30 am</option>-->
+<!--											<option value="01:45">1:45 am</option>-->
+<!--											<option value="02:00">2:00 am</option>-->
+<!--											<option value="02:15">2:15 am</option>-->
+<!--											<option value="02:30">2:30 am</option>-->
+<!--											<option value="02:45">2:45 am</option>-->
+<!--											<option value="03:00">3:00 am</option>-->
+<!--											<option value="03:15">3:15 am</option>-->
+<!--											<option value="03:30">3:30 am</option>-->
+<!--											<option value="03:45">3:45 am</option>-->
+<!--											<option value="04:00">4:00 am</option>-->
+<!--											<option value="04:15">4:15 am</option>-->
+<!--											<option value="04:30">4:30 am</option>-->
+<!--											<option value="04:45">4:45 am</option>-->
+<!--											<option value="05:00">5:00 am</option>-->
+<!--											<option value="05:15">5:15 am</option>-->
+<!--											<option value="05:30">5:30 am</option>-->
+<!--											<option value="05:45">5:45 am</option>-->
+<!--											<option value="06:00">6:00 am</option>-->
+<!--											<option value="06:15">6:15 am</option>-->
+<!--											<option value="06:30">6:30 am</option>-->
+<!--											<option value="06:45">6:45 am</option>-->
+<!--											<option value="07:00">7:00 am</option>-->
+<!--											<option value="07:15">7:15 am</option>-->
+<!--											<option value="07:30">7:30 am</option>-->
+<!--											<option value="07:45">7:45 am</option>-->
+<!--											<option value="08:00">8:00 am</option>-->
+<!--											<option value="08:15">8:15 am</option>-->
+<!--											<option value="08:30">8:30 am</option>-->
+<!--											<option value="08:45">8:45 am</option>-->
+<!--											<option value="09:00">9:00 am</option>-->
+<!--											<option value="09:15">9:15 am</option>-->
+<!--											<option value="09:30">9:30 am</option>-->
+<!--											<option value="09:45">9:45 am</option>-->
+<!--											<option value="10:00">10:00 am</option>-->
+<!--											<option value="10:15">10:15 am</option>-->
+<!--											<option value="10:30">10:30 am</option>-->
+<!--											<option value="10:45">10:45 am</option>-->
+<!--											<option value="11:00">11:00 am</option>-->
+<!--											<option value="11:15">11:15 am</option>-->
+<!--											<option value="11:30">11:30 am</option>-->
+<!--											<option value="11:45">11:45 am</option>-->
+<!--											<option value="12:00">12:00 pm</option>-->
+<!--											<option value="12:15">12:15 pm</option>-->
+<!--											<option value="12:30">12:30 pm</option>-->
+<!--											<option value="12:45">12:45 pm</option>-->
+<!--											<option value="13:00">1:00 pm</option>-->
+<!--											<option value="13:15">1:15 pm</option>-->
+<!--											<option value="13:30">1:30 pm</option>-->
+<!--											<option value="13:45">1:45 pm</option>-->
+<!--											<option value="14:00">2:00 pm</option>-->
+<!--											<option value="14:15">2:15 pm</option>-->
+<!--											<option value="14:30">2:30 pm</option>-->
+<!--											<option value="14:45">2:45 pm</option>-->
+<!--											<option value="15:00">3:00 pm</option>-->
+<!--											<option value="15:15">3:15 pm</option>-->
+<!--											<option value="15:30">3:30 pm</option>-->
+<!--											<option value="15:45">3:45 pm</option>-->
+<!--											<option value="16:00">4:00 pm</option>-->
+<!--											<option value="16:15">4:15 pm</option>-->
+<!--											<option value="16:30">4:30 pm</option>-->
+<!--											<option value="16:45">4:45 pm</option>-->
+<!--											<option value="17:00">5:00 pm</option>-->
+<!--											<option value="17:15">5:15 pm</option>-->
+<!--											<option value="17:30">5:30 pm</option>-->
+<!--											<option value="17:45">5:45 pm</option>-->
+<!--											<option value="18:00">6:00 pm</option>-->
+<!--											<option value="18:15">6:15 pm</option>-->
+<!--											<option value="18:30">6:30 pm</option>-->
+<!--											<option value="18:45">6:45 pm</option>-->
+<!--											<option value="19:00">7:00 pm</option>-->
+<!--											<option value="19:15">7:15 pm</option>-->
+<!--											<option value="19:30">7:30 pm</option>-->
+<!--											<option value="19:45">7:45 pm</option>-->
+<!--											<option value="20:00">8:00 pm</option>-->
+<!--											<option value="20:15">8:15 pm</option>-->
+<!--											<option value="20:30">8:30 pm</option>-->
+<!--											<option value="20:45">8:45 pm</option>-->
+<!--											<option value="21:00">9:00 pm</option>-->
+<!--											<option value="21:15">9:15 pm</option>-->
+<!--											<option value="21:30">9:30 pm</option>-->
+<!--											<option value="21:45">9:45 pm</option>-->
+<!--											<option value="22:00">10:00 pm</option>-->
+<!--											<option value="22:15">10:15 pm</option>-->
+<!--											<option value="22:30">10:30 pm</option>-->
+<!--											<option value="22:45">10:45 pm</option>-->
+<!--											<option value="23:00">11:00 pm</option>-->
+<!--											<option value="23:15">11:15 pm</option>-->
+<!--											<option value="23:30">11:30 pm</option>-->
+<!--											<option value="23:45">11:45 pm</option>-->
+<!--										<option value="23:59">11:59 pm</option>-->
+<!--				</select>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time Duration</label>-->
+<!--                                                                        <input type="text" class="form-control style2" name="time_duration" placeholder="30" required="required">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group space-30">-->
+<!--                                                                        <label>Message</label>-->
+<!--                                                                        <textarea class="form-control style2" name="message" placeholder="Message" required="required"></textarea>-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Zoom Meeting</label>-->
+<!--                                                                        <input type="checkbox" name="zoom_meeting" value="1">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    &lt;!&ndash; /.form-group &ndash;&gt;-->
+
+<!--                                                                    <input type="hidden" id="nonce" name="nonce" value="31ad8d3c65" /><input type="hidden" name="_wp_http_referer" value="/wp-demo/superio/user-dashboard/" /> <input type="hidden" name="action"-->
+<!--                                                                        value="wp_job_board_pro_ajax_create_meeting">-->
+<!--                                                                    <input type="hidden" name="application_id" value="11213">-->
+<!--                                                                    <button class="button btn btn-theme btn-block" name="create-meeting">Create Meeting</button>-->
+<!--                                                                </form>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <a data-toggle="tooltip" href="javascript:void(0);" class="btn-undo-approve-job-applied btn-action-icon approve" data-applicant_id="11213" data-nonce="ce5ee9de93" title="Undo Approved"><i class="fa fa-undo"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11212" title="Download CV" class="btn-action-icon download"><i class="ti-download"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" title="Remove" href="javascript:void(0);" class="btn-action-icon btn-remove-job-applied remove" data-applicant_id="11213" data-nonce="af75d9f6fd"><i class="ti-close"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                        </article>-->
+                                        <!-- #post-## -->
+
+
+
+<!--                                        <article class="applicants-job job-applicant-wrapper clearfix  post-11209 job_applicant type-job_applicant status-publish hentry">-->
+
+<!--                                            <div class="candidate-list candidate-archive-layout flex-middle-sm">-->
+<!--                                                <div class="candidate-info">-->
+<!--                                                    <div class="flex-middle">-->
+<!--                                                        <div class="candidate-info-content">-->
+<!--                                                            <div class="title-wrapper flex-middle-sm">-->
+<!--                                                                <h2 class="candidate-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/candidate/dvdfv/?applicant_id=11209&#038;candidate_id=11208&#038;action=view-profile" rel="bookmark">dvdfv</a>-->
+<!--                                                                </h2>-->
+
+<!--                                                                <span class="label label-success approved">Approved</span> </div>-->
+<!--                                                            <div class="job-metas">-->
+<!--                                                                <h4 class="job-title">-->
+<!--                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">Junior Graphic Designer (Web)</a>-->
+<!--                                                                </h4>-->
+<!--                                                                <div class="date">-->
+<!--                                                                    Applied date : March 19, 2024 </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="ali-right">-->
+<!--                                                    <div class="applicant-action-button action-button">-->
+
+<!--                                                        <a data-toggle="tooltip" href="#job-apply-create-meeting-form-wrapper-11209-11208" class="btn-create-meeting-job-applied btn-action-icon" title="Create Meeting"><i class="ti-plus"></i></a>-->
+<!--                                                        <div id="job-apply-create-meeting-form-wrapper-11209-11208" class="job-apply-email-form-wrapper mfp-hide">-->
+<!--                                                            <div class="inner">-->
+<!--                                                                <h2 class="widget-title"><span>Create Meeting</span></h2>-->
+
+<!--                                                                <form id="job-apply-create-meeting-form-11209-11208" class="create-meeting-form" method="post" autocomplete="off">-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Date</label>-->
+<!--                                                                        <input type="text" class="form-control style2 datetimepicker-date" name="date_display" autocomplete="false" placeholder="March 26, 2024" required="required" data-date_format="MM d, yy" data-id="#datetimepicker-date-idtWf3J">-->
+
+<!--                                                                        <input id="datetimepicker-date-idtWf3J" type="hidden" class="form-control" name="date" required="required">-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time</label>-->
+<!--                                                                        <select class="select-time-hour form-control style2" name="time" placeholder="7:38 pm" required="required">-->
+
+<!--											<option value="00:00">12:00 am</option>-->
+<!--											<option value="00:15">12:15 am</option>-->
+<!--											<option value="00:30">12:30 am</option>-->
+<!--											<option value="00:45">12:45 am</option>-->
+<!--											<option value="01:00">1:00 am</option>-->
+<!--											<option value="01:15">1:15 am</option>-->
+<!--											<option value="01:30">1:30 am</option>-->
+<!--											<option value="01:45">1:45 am</option>-->
+<!--											<option value="02:00">2:00 am</option>-->
+<!--											<option value="02:15">2:15 am</option>-->
+<!--											<option value="02:30">2:30 am</option>-->
+<!--											<option value="02:45">2:45 am</option>-->
+<!--											<option value="03:00">3:00 am</option>-->
+<!--											<option value="03:15">3:15 am</option>-->
+<!--											<option value="03:30">3:30 am</option>-->
+<!--											<option value="03:45">3:45 am</option>-->
+<!--											<option value="04:00">4:00 am</option>-->
+<!--											<option value="04:15">4:15 am</option>-->
+<!--											<option value="04:30">4:30 am</option>-->
+<!--											<option value="04:45">4:45 am</option>-->
+<!--											<option value="05:00">5:00 am</option>-->
+<!--											<option value="05:15">5:15 am</option>-->
+<!--											<option value="05:30">5:30 am</option>-->
+<!--											<option value="05:45">5:45 am</option>-->
+<!--											<option value="06:00">6:00 am</option>-->
+<!--											<option value="06:15">6:15 am</option>-->
+<!--											<option value="06:30">6:30 am</option>-->
+<!--											<option value="06:45">6:45 am</option>-->
+<!--											<option value="07:00">7:00 am</option>-->
+<!--											<option value="07:15">7:15 am</option>-->
+<!--											<option value="07:30">7:30 am</option>-->
+<!--											<option value="07:45">7:45 am</option>-->
+<!--											<option value="08:00">8:00 am</option>-->
+<!--											<option value="08:15">8:15 am</option>-->
+<!--											<option value="08:30">8:30 am</option>-->
+<!--											<option value="08:45">8:45 am</option>-->
+<!--											<option value="09:00">9:00 am</option>-->
+<!--											<option value="09:15">9:15 am</option>-->
+<!--											<option value="09:30">9:30 am</option>-->
+<!--											<option value="09:45">9:45 am</option>-->
+<!--											<option value="10:00">10:00 am</option>-->
+<!--											<option value="10:15">10:15 am</option>-->
+<!--											<option value="10:30">10:30 am</option>-->
+<!--											<option value="10:45">10:45 am</option>-->
+<!--											<option value="11:00">11:00 am</option>-->
+<!--											<option value="11:15">11:15 am</option>-->
+<!--											<option value="11:30">11:30 am</option>-->
+<!--											<option value="11:45">11:45 am</option>-->
+<!--											<option value="12:00">12:00 pm</option>-->
+<!--											<option value="12:15">12:15 pm</option>-->
+<!--											<option value="12:30">12:30 pm</option>-->
+<!--											<option value="12:45">12:45 pm</option>-->
+<!--											<option value="13:00">1:00 pm</option>-->
+<!--											<option value="13:15">1:15 pm</option>-->
+<!--											<option value="13:30">1:30 pm</option>-->
+<!--											<option value="13:45">1:45 pm</option>-->
+<!--											<option value="14:00">2:00 pm</option>-->
+<!--											<option value="14:15">2:15 pm</option>-->
+<!--											<option value="14:30">2:30 pm</option>-->
+<!--											<option value="14:45">2:45 pm</option>-->
+<!--											<option value="15:00">3:00 pm</option>-->
+<!--											<option value="15:15">3:15 pm</option>-->
+<!--											<option value="15:30">3:30 pm</option>-->
+<!--											<option value="15:45">3:45 pm</option>-->
+<!--											<option value="16:00">4:00 pm</option>-->
+<!--											<option value="16:15">4:15 pm</option>-->
+<!--											<option value="16:30">4:30 pm</option>-->
+<!--											<option value="16:45">4:45 pm</option>-->
+<!--											<option value="17:00">5:00 pm</option>-->
+<!--											<option value="17:15">5:15 pm</option>-->
+<!--											<option value="17:30">5:30 pm</option>-->
+<!--											<option value="17:45">5:45 pm</option>-->
+<!--											<option value="18:00">6:00 pm</option>-->
+<!--											<option value="18:15">6:15 pm</option>-->
+<!--											<option value="18:30">6:30 pm</option>-->
+<!--											<option value="18:45">6:45 pm</option>-->
+<!--											<option value="19:00">7:00 pm</option>-->
+<!--											<option value="19:15">7:15 pm</option>-->
+<!--											<option value="19:30">7:30 pm</option>-->
+<!--											<option value="19:45">7:45 pm</option>-->
+<!--											<option value="20:00">8:00 pm</option>-->
+<!--											<option value="20:15">8:15 pm</option>-->
+<!--											<option value="20:30">8:30 pm</option>-->
+<!--											<option value="20:45">8:45 pm</option>-->
+<!--											<option value="21:00">9:00 pm</option>-->
+<!--											<option value="21:15">9:15 pm</option>-->
+<!--											<option value="21:30">9:30 pm</option>-->
+<!--											<option value="21:45">9:45 pm</option>-->
+<!--											<option value="22:00">10:00 pm</option>-->
+<!--											<option value="22:15">10:15 pm</option>-->
+<!--											<option value="22:30">10:30 pm</option>-->
+<!--											<option value="22:45">10:45 pm</option>-->
+<!--											<option value="23:00">11:00 pm</option>-->
+<!--											<option value="23:15">11:15 pm</option>-->
+<!--											<option value="23:30">11:30 pm</option>-->
+<!--											<option value="23:45">11:45 pm</option>-->
+<!--										<option value="23:59">11:59 pm</option>-->
+<!--				</select>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Time Duration</label>-->
+<!--                                                                        <input type="text" class="form-control style2" name="time_duration" placeholder="30" required="required">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group space-30">-->
+<!--                                                                        <label>Message</label>-->
+<!--                                                                        <textarea class="form-control style2" name="message" placeholder="Message" required="required"></textarea>-->
+<!--                                                                    </div>-->
+
+<!--                                                                    <div class="form-group">-->
+<!--                                                                        <label>Zoom Meeting</label>-->
+<!--                                                                        <input type="checkbox" name="zoom_meeting" value="1">-->
+<!--                                                                    </div>-->
+
+<!--                                                                    &lt;!&ndash; /.form-group &ndash;&gt;-->
+
+<!--                                                                    <input type="hidden" id="nonce" name="nonce" value="31ad8d3c65" /><input type="hidden" name="_wp_http_referer" value="/wp-demo/superio/user-dashboard/" /> <input type="hidden" name="action"-->
+<!--                                                                        value="wp_job_board_pro_ajax_create_meeting">-->
+<!--                                                                    <input type="hidden" name="application_id" value="11209">-->
+<!--                                                                    <button class="button btn btn-theme btn-block" name="create-meeting">Create Meeting</button>-->
+<!--                                                                </form>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <a data-toggle="tooltip" href="javascript:void(0);" class="btn-undo-approve-job-applied btn-action-icon approve" data-applicant_id="11209" data-nonce="ce5ee9de93" title="Undo Approved"><i class="fa fa-undo"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11208" title="Download CV" class="btn-action-icon download"><i class="ti-download"></i></a>-->
+
+<!--                                                        <a data-toggle="tooltip" title="Remove" href="javascript:void(0);" class="btn-action-icon btn-remove-job-applied remove" data-applicant_id="11209" data-nonce="af75d9f6fd"><i class="ti-close"></i></a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                        </article>-->
+                                        <!-- #post-## -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .site-main -->
+                    </div>
+
+{% endblock %}

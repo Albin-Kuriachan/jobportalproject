@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('', include("employer.urls")),
-    path('candidate/', include("candidate.urls"))
+    path('candidate/', include("candidate.urls")),
+    path('account/', include("account.urls"))
 
 
 

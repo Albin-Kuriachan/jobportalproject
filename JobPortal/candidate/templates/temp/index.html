@@ -1,16 +1,392 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidate Profile Form</title>
-</head>
-<body>
-    <h1>Candidate Profile Form</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'temp/base.html' %}
+{% block content %}
+
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+    <div id="main" class="site-main clearfix" role="main">
+
+
+        <div class="box-dashboard-wrapper">
+            <h3 class="title">Applications statistics</h3>
+            <div class="inner-list bg-transparent no-padding">
+                <div class="statistics row">
+                    <div class="col-xs-12 col-lg-3 col-sm-6">
+                        <div class="inner-header">
+                            <div class="posted-jobs list-item flex-middle justify-content-between text-right">
+                                <div class="icon-wrapper">
+                                    <div class="icon">
+                                        <i class="bi bi-briefcase"></i>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="number-count">{{apply_count}}</div>
+                                    <span>Applied Jobs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-3 col-sm-6">
+                        <div class="inner-header">
+                            <div class="review-count-wrapper list-item flex-middle justify-content-between text-right">
+                                <div class="icon-wrapper">
+                                    <div class="icon">
+                                        <i class="bi bi-chat"></i>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="number-count">{{pending_count}}</div>
+                                    <span>Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="col-xs-12 col-lg-3 col-sm-6">
+                        <div class="inner-header">
+                            <div class="shortlist list-item flex-middle justify-content-between text-right">
+                                <div class="icon-wrapper">
+                                    <div class="icon">
+                                        <i class="bi bi-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="number-count">{{shortlist_count}}</div>
+                                    <span>Shortlisted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-3 col-sm-6">
+                        <div class="inner-header">
+                            <div class="views-count-wrapper list-item flex-middle justify-content-between text-right">
+                                <div class="icon-wrapper">
+                                    <div class="icon">
+                                        <i class="bi bi-x-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="number-count">{{rejected_count}}</div>
+                                    <span>Rejected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-sm-8">
+                    <div class="inner-list">
+                        <h3 class="title-small">Your Profile Views</h3>
+                        <div class="page_views-wrapper">
+
+                            <canvas id="dashboard_chart_wrapper" data-labels="[&quot;March 11, 2024&quot;,&quot;March 12, 2024&quot;,&quot;March 13, 2024&quot;,&quot;March 14, 2024&quot;,&quot;March 15, 2024&quot;,&quot;March 16, 2024&quot;,&quot;March 17, 2024&quot;,&quot;March 18, 2024&quot;,&quot;March 19, 2024&quot;,&quot;March 20, 2024&quot;,&quot;March 21, 2024&quot;,&quot;March 22, 2024&quot;,&quot;March 23, 2024&quot;,&quot;March 24, 2024&quot;,&quot;March 25, 2024&quot;]"
+                                data-values="[16,10,10,6,5,1,3,7,10,4,12,5,4,8,4]" data-label="Views" data-chart_type="line" data-bg_color="#1967D2" data-border_color="#1967D2"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="inner-list dashboard-notifications">
+                        <h3 class="title-small">Notifications</h3>
+                        <div class="dashboard-notifications-wrapper">
+                            <ul>
+                                <li>
+                                    <span class="icons">
+                                                                            <i class="flaticon-briefcase"></i>
+                                                                        </span>
+                                    <span class="text">
+                        <div>
+                            The application is undo approved on your job <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/">Junior Graphic Designer (Web)</a> by <a href="https://apusthemes.com/wp-demo/superio/employer/employer/">Employer</a>.			                                </div>
+                        <small class="time">
+                            6 months ago		                            		</small>
+                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="inner-list">
+                <h3 class="title-small">Jobs Applied Recently</h3>
+                <div class="applicants">
+<!--                    <article id="post-4540"-->
+<!--                        class="map-item layout-job job-list default post-4540 job_listing type-job_listing status-publish hentry job_listing_type-full-time job_listing_category-design job_listing_category-development job_listing_location-new-york job_listing_tag-app job_listing_tag-jobs job_listing_tag-superio job_listing_tag-support is-featured is-urgent"-->
+<!--                        data-latitude="40.69865478041131" data-longitude="-73.99426069264436"-->
+<!--                        data-img="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg">-->
+<!--                        <div class="clearfix">-->
+<!--                            <a href="javascript:void(0);" class="btn-follow btn-action-job btn-add-job-shortlist"-->
+<!--                                data-job_id="4540" data-nonce="4d7a71f841"><i class="flaticon-bookmark"></i></a>-->
+<!--                            <div class="employer-logo">-->
+<!--                                <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/">-->
+<!--                                    <img decoding="async" width="100" height="100"-->
+<!--                                        src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"-->
+<!--                                        class="attachment-thumbnail size-thumbnail wp-post-image" alt="" /> </a>-->
+<!--                            </div>-->
+<!--                            <div class="job-list-content">-->
+<!--                                <div class="title-wrapper flex-middle-sm">-->
+<!--                                    <h2 class="job-title"><a-->
+<!--                                            href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/"-->
+<!--                                            rel="bookmark">Junior Graphic Designer (Web)</a></h2> <span-->
+<!--                                        class="featured-text">Featured</span>-->
+<!--                                    <span class="filled-text">Filled</span>-->
+<!--                                </div>-->
+<!--                                <div class="job-metas">-->
+<!--                                    <div class="category-job">-->
+<!--                                        <div class="job-category with-icon">-->
+<!--                                            <i class="flaticon-briefcase-1"></i>-->
+<!--                                            <a href="https://apusthemes.com/wp-demo/superio/job-category/design/"-->
+<!--                                                style="">Design</a>,-->
+
+<!--                                            <a href="https://apusthemes.com/wp-demo/superio/job-category/development/"-->
+<!--                                                style="">Development</a>-->
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="job-location">-->
+<!--                                        <i class="flaticon-location"></i>-->
+<!--                                        <a href="https://apusthemes.com/wp-demo/superio/job-location/new-york/">New-->
+<!--                                            York</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="job-salary with-icon"><i class="flaticon-money-1"></i> <span-->
+<!--                                            class="suffix">&#36;</span><span class="price-text">150</span> - <span-->
+<!--                                            class="suffix">&#36;</span><span class="price-text">180</span> / week</div>-->
+<!--                                </div>-->
+<!--                                <div class="job-metas-bottom">-->
+<!--                                    <div class="job-type with-title">-->
+<!--                                        <a class="type-job"-->
+<!--                                            href="https://apusthemes.com/wp-demo/superio/job-type/full-time/"-->
+<!--                                            style="">Full Time</a>-->
+<!--                                    </div> <span class="urgent">Urgent</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </article>-->
+                    <!-- #post-## -->
+                    <!-- <article id="post-4539" class="map-item layout-job job-list default post-4539 job_listing type-job_listing status-publish hentry job_listing_type-full-time job_listing_category-design job_listing_location-new-york job_listing_tag-app job_listing_tag-design job_listing_tag-superio is-featured is-urgent"
+                        data-latitude="40.69825141641231" data-longitude="-73.99315539428927" data-img="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y11.jpg">
+                        <div class="clearfix">
+                            <a href="javascript:void(0);" class="btn-follow btn-action-job btn-add-job-shortlist" data-job_id="4539" data-nonce="4d7a71f841"><i class="flaticon-bookmark"></i></a>
+                            <div class="employer-logo">
+                                <a href="https://apusthemes.com/wp-demo/superio/job/finance-manager-health/">
+    <img decoding="async" width="100" height="100" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y11.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" />            	                	</a>
+                            </div>
+                            <div class="job-list-content">
+                                <div class="title-wrapper flex-middle-sm">
+                                    <h2 class="job-title"><a href="https://apusthemes.com/wp-demo/superio/job/finance-manager-health/" rel="bookmark">Finance Manager &#038; Health</a></h2> <span class="featured-text">Featured</span>
+                                    <span class="label label-info pending">Pending</span>
+                                </div>
+                                <div class="job-metas">
+                                    <div class="category-job">
+                                        <div class="job-category with-icon">
+                                            <i class="flaticon-briefcase-1"></i>
+                                            <a href="https://apusthemes.com/wp-demo/superio/job-category/design/" style="">Design</a>
+
+                                        </div>
+                                    </div>
+                                    <div class="job-location">
+                                        <i class="flaticon-location"></i>
+                                        <a href="https://apusthemes.com/wp-demo/superio/job-location/new-york/">New York</a> </div>
+                                    <div class="job-salary with-icon"><i class="flaticon-money-1"></i> <span class="suffix">&#36;</span><span class="price-text">450</span> - <span class="suffix">&#36;</span><span class="price-text">500</span> / month</div>
+                                </div>
+                                <div class="job-metas-bottom">
+                                    <div class="job-type with-title">
+                                        <a class="type-job" href="https://apusthemes.com/wp-demo/superio/job-type/full-time/" style="">Full Time</a>
+                                    </div> <span class="urgent">Urgent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article> -->
+                    <!-- #post-## -->
+
+                    {% for job in jobdata %}
+                    <article id="post-4531"
+                        class="map-item layout-job job-list default post-4531 job_listing type-job_listing status-publish hentry job_listing_type-internship job_listing_category-customer job_listing_location-new-york job_listing_tag-app job_listing_tag-design job_listing_tag-jobs job_listing_tag-skill is-featured"
+                        data-latitude="40.69627943975441" data-longitude="-73.97313156210255"
+                        data-img="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg">
+                        <a href="{% url 'job_details' job_id=job.id %}">
+
+
+                            <div class="clearfix">
+                                <a href="javascript:void(0);" class="btn-follow btn-action-job btn-add-job-shortlist"
+                                    data-job_id="4531" data-nonce="4d7a71f841"><i class="flaticon-bookmark"></i></a>
+                                <div class="employer-logo">
+                                    <a href="https://apusthemes.com/wp-demo/superio/job/restaurant-team-member/">
+                                        {% if job.job.image.url is not None %}
+                                        <img decoding="async" width="100" height="100" src="{{job.job.image.url}}"
+                                            class="attachment-thumbnail size-thumbnail wp-post-image" alt="" /> </a>
+                                    {% else %}
+
+                                    <img decoding="async" width="100" height="100"
+                                        src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
+                                        class="attachment-thumbnail size-thumbnail wp-post-image" alt="" />
+                                    {% endif %}
+
+                        </a>
+
+                </div>
+                <div class="job-list-content">
+                    <div class="title-wrapper flex-middle-sm">
+                        <h2 class="job-title"><a href="{% url 'job_details' job_id=job.job.id %}"
+                                rel="bookmark">{{job.job.job_title}}</a></h2> <span
+                            class="featured-text">Featured</span>
+
+
+
+
+                        {% if job.status == "Pending" %}
+                        <span class="label label-warning ">Pending</span>
+                        {% elif job.status == "Approved" %}
+                        <span class="label label-success">Approved</span>
+                        {% elif job.status == "Rejected" %}
+                        <span class="label label-danger">Rejected</span>
+                        {% else %}
+                        <span class="label label-info pending">Shortlisted</span>
+                        {% endif %}
+
+
+
+                    </div>
+                    <div class="job-metas">
+                        <div class="category-job">
+                            <div class="job-category with-icon">
+                                <i class="flaticon-briefcase-1"></i>
+                                <a href="https://apusthemes.com/wp-demo/superio/job-category/customer/"
+                                    style="">{{job.job.category}}</a>
+
+                            </div>
+                        </div>
+                        <div class="job-location">
+                            <i class="flaticon-location"></i>
+                            <a
+                                href="https://apusthemes.com/wp-demo/superio/job-location/new-york/">{{job.job.location}}</a>
+                        </div>
+                        <div class="job-salary with-icon"><i class="flaticon-money-1"></i> <span
+                                class="suffix"></span><span class="price-text">{{job.job.salary}}</span> / month</div>
+                    </div>
+                    <div class="job-metas-bottom">
+                        <div class="job-type with-title">
+                            <a class="type-job" href="https://apusthemes.com/wp-demo/superio/job-type/internship/"
+                                style="">{{job.job.employment_type}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            </a>
+
+
+
+            </article>
+
+            {% endfor %}
+            <!-- #post-## -->
+
+
+<!--            -->
+<!--            <article id="post-1043"-->
+<!--                class="map-item layout-job job-list default post-1043 job_listing type-job_listing status-publish hentry job_listing_type-internship job_listing_category-health-and-care job_listing_location-london job_listing_tag-app job_listing_tag-wordpress"-->
+<!--                data-latitude="51.51240246616976" data-longitude="-0.1376273772381626"-->
+<!--                data-img="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y3.jpg">-->
+<!--                <div class="clearfix">-->
+<!--                    <a href="javascript:void(0);" class="btn-follow btn-action-job added btn-added-job-shortlist"-->
+<!--                        data-job_id="1043" data-nonce="b1feb036b2"><i class="flaticon-bookmark"></i></a>-->
+<!--                    <div class="employer-logo">-->
+<!--                        <a href="https://apusthemes.com/wp-demo/superio/job/product-manager-studio/">-->
+<!--                            <img loading="lazy" decoding="async" width="100" height="100"-->
+<!--                                src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y3.jpg"-->
+<!--                                class="attachment-thumbnail size-thumbnail wp-post-image" alt="" /> </a>-->
+<!--                    </div>-->
+<!--                    -->
+<!--                    <div class="job-list-content">-->
+<!--                        <div class="title-wrapper flex-middle-sm">-->
+<!--                            <h2 class="job-title"><a-->
+<!--                                    href="https://apusthemes.com/wp-demo/superio/job/product-manager-studio/"-->
+<!--                                    rel="bookmark">Product Manager, Studio</a></h2> <span-->
+<!--                                class="label label-info pending">Pending</span>-->
+<!--                        </div>-->
+<!--                        <div class="job-metas">-->
+<!--                            <div class="category-job">-->
+<!--                                <div class="job-category with-icon">-->
+<!--                                    <i class="flaticon-briefcase-1"></i>-->
+<!--                                    <a href="https://apusthemes.com/wp-demo/superio/job-category/health-and-care/"-->
+<!--                                        style="">Health and Care</a>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="job-location">-->
+<!--                                <i class="flaticon-location"></i>-->
+<!--                                <a href="https://apusthemes.com/wp-demo/superio/job-location/london/">London</a>-->
+<!--                            </div>-->
+<!--                            <div class="job-salary with-icon"><i class="flaticon-money-1"></i> <span-->
+<!--                                    class="suffix">&#36;</span><span class="price-text">350</span> - <span-->
+<!--                                    class="suffix">&#36;</span><span class="price-text">450</span> / month</div>-->
+<!--                        </div>-->
+<!--                        <div class="job-metas-bottom">-->
+<!--                            <div class="job-type with-title">-->
+<!--                                <a class="type-job" href="https://apusthemes.com/wp-demo/superio/job-type/internship/"-->
+<!--                                    style="">Internship</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </article>-->
+            <!-- #post-## -->
+<!--            <article id="post-1042"-->
+<!--                class="map-item layout-job job-list default post-1042 job_listing type-job_listing status-publish hentry job_listing_type-internship job_listing_category-design job_listing_category-development job_listing_location-los-angeles job_listing_tag-app job_listing_tag-wordpress is-featured"-->
+<!--                data-latitude="34.066467802627955" data-longitude="-118.30913797488205"-->
+<!--                data-img="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/y9.jpg">-->
+<!--                <div class="clearfix">-->
+<!--                    <a href="javascript:void(0);" class="btn-follow btn-action-job added btn-added-job-shortlist"-->
+<!--                        data-job_id="1042" data-nonce="b1feb036b2"><i class="flaticon-bookmark"></i></a>-->
+<!--                    <div class="employer-logo">-->
+<!--                        <a href="https://apusthemes.com/wp-demo/superio/job/recruiting-coordinator/">-->
+<!--                            <img loading="lazy" decoding="async" width="100" height="100"-->
+<!--                                src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/y9.jpg"-->
+<!--                                class="attachment-thumbnail size-thumbnail wp-post-image" alt="" /> </a>-->
+<!--                    </div>-->
+<!--                    <div class="job-list-content">-->
+<!--                        <div class="title-wrapper flex-middle-sm">-->
+<!--                            <h2 class="job-title"><a-->
+<!--                                    href="https://apusthemes.com/wp-demo/superio/job/recruiting-coordinator/"-->
+<!--                                    rel="bookmark">Recruiting Coordinator</a></h2> <span-->
+<!--                                class="featured-text">Featured</span>-->
+<!--                            <span class="label label-info pending">Pending</span>-->
+<!--                        </div>-->
+<!--                        <div class="job-metas">-->
+<!--                            <div class="category-job">-->
+<!--                                <div class="job-category with-icon">-->
+<!--                                    <i class="flaticon-briefcase-1"></i>-->
+<!--                                    <a href="https://apusthemes.com/wp-demo/superio/job-category/design/"-->
+<!--                                        style="">Design</a>,-->
+
+<!--                                    <a href="https://apusthemes.com/wp-demo/superio/job-category/development/"-->
+<!--                                        style="">Development</a>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="job-location">-->
+<!--                                <i class="flaticon-location"></i>-->
+<!--                                <a href="https://apusthemes.com/wp-demo/superio/job-location/los-angeles/">Los-->
+<!--                                    Angeles</a>-->
+<!--                            </div>-->
+<!--                            <div class="job-salary with-icon"><i class="flaticon-money-1"></i> <span-->
+<!--                                    class="suffix">&#36;</span><span class="price-text">250</span> - <span-->
+<!--                                    class="suffix">&#36;</span><span class="price-text">350</span> / month</div>-->
+<!--                        </div>-->
+<!--                        <div class="job-metas-bottom">-->
+<!--                            <div class="job-type with-title">-->
+<!--                                <a class="type-job" href="https://apusthemes.com/wp-demo/superio/job-type/internship/"-->
+<!--                                    style="">Internship</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </article>-->
+            <!-- #post-## -->
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

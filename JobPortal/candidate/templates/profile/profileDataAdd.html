@@ -1,0 +1,780 @@
+{% extends 'temp/base.html' %}
+
+
+{% block content %}
+
+
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+	<div id="main" class="site-main clearfix" role="main">
+
+		<div class="profile-form-wrapper box-dashboard-wrapper dashboard-wrapper-v2">
+			<h1 class="title">Edit Profile</h1>
+			<div class="inner-list">
+
+				<form action="" class="cmb-form" method="post" id="_candidate_front" enctype="multipart/form-data"
+					encoding="multipart/form-data"><input type="hidden" name="object_id" value="1770">
+					<!-- Begin CMB2 Fields -->
+					{% csrf_token %}
+					<input type="hidden" id="nonce_CMB2php_candidate_front" name="nonce_CMB2php_candidate_front"
+						value="5118a0464e" />
+					<div class="cmb2-wrap form-table">
+						<div id="cmb2-metabox-_candidate_front" class="cmb2-metabox cmb-field-list">
+							<div id="heading-custom-heading-333"
+								class="before-group-row before-group-row-0 active columns-2">
+								<div class="before-group-row-inner">
+									<div class="cmb-row cmb-type-title cmb2-id-custom-heading-333"
+										data-fieldtype="title">
+
+										<div class="cmb-td">
+											<h5 class="cmb2-metabox-title" id="custom-heading-333"
+												data-hash='578h5mukhnk0'>My Profile</h5>
+										</div>
+									</div>
+									<div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id--candidate-featured-image"
+										data-fieldtype="wp_job_board_pro_file">
+
+										<div class="cmb-td">
+											<div class="wp-job-board-pro-uploaded-files"
+												style="width:100px;height:100px;">
+												<div class="wp-job-board-pro-uploaded-file"
+													style="width:100px;height:100px;">
+													<!-- <span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/member4.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span> -->
+													<span class="wp-job-board-pro-uploaded-file-preview"
+														style="width:100px;height:100px;"><img decoding="async"
+															name=image src="{{candidate.image.url}}"
+															style="height: 100px;width: 100px;" />
+														<!--														<a class="wp-job-board-pro-remove-uploaded-file"-->
+														<!--															href="#">[remove]</a>-->
+													</span>
+
+													<input type="hidden" class="input-text" name="image" value="4572" />
+
+												</div>
+											</div>
+
+
+											<input type="file" class="hidden wp-job-board-pro-file-upload"
+												data-file_types="gif|png|jpg|jpeg|jpe"
+												data-mime_types="image/gif|image/png|image/jpeg" name="image"
+												data-file_limit="5" data-file_size="5" />
+											<!-- <input type="file" name="image"> -->
+
+
+
+
+											<label for="file-upload" class="custom-file-upload">
+												<i class="bi bi-cloud-upload"></i> Choose File
+											</label>
+											<input id="file-upload" type="file" name="image" accept="image/*">
+
+
+											<style>
+												/* Hide the default file input */
+												input[type="file"] {
+													display: none;
+												}
+
+												/* Style the custom file upload button */
+												.custom-file-upload {
+													background-color: #007bff;
+													/* Example background color */
+													color: #fff;
+													/* Example text color */
+													padding: 8px 12px;
+													/* Example padding */
+													border-radius: 4px;
+													/* Example border radius */
+													cursor: pointer;
+													/* Show pointer cursor on hover */
+													display: inline-block;
+													/* Make it behave like a button */
+													margin-top: 30px;
+													margin-left: 10px;
+												}
+
+												/* Optional: Style the icon */
+												.custom-file-upload i {
+													margin-right: 8px;
+													/* Example margin */
+												}
+											</style>
+
+
+
+
+										</div>
+									</div>
+
+									<div class="cmb-row cmb-type-text cmb2-id--candidate-title table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_candidate_title">First Name</label>
+										</div>
+										<div class="cmb-td">
+											<input type="text" class="regular-text" name="first_name"
+												id="_candidate_title" value="{{candidate.first_name}}"
+												data-hash='7jv0s6l7ahh0' required="required" />
+											<!-- {{form.first_name}} -->
+										</div>
+									</div>
+
+
+									<div class="cmb-row cmb-type-text cmb2-id--candidate-title table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_candidate_title">Last Name</label>
+										</div>
+										<div class="cmb-td">
+											<input type="text" class="regular-text" name="last_name"
+												id="_candidate_title" value="{{candidate.last_name}}"
+												data-hash='7jv0s6l7ahh0' required="required" />
+											<!-- {{form.first_name}} -->
+										</div>
+									</div>
+
+									<!-- <div class="cmb-row cmb-type-wjbp-datepicker2 cmb2-id--candidate-founded-date" data-fieldtype="wjbp_datepicker2">
+<div class="cmb-th">
+<label for="_candidate_founded_date">Date of Birth</label>
+</div>
+<div class="cmb-td">
+<input type="text" class="wjbp-datepicker2" name="_candidate_founded_date" id="_candidate_founded_date" value="{{candidate.dob}}" placeholder="" data-hash='4vaog8iecpc0' data-datepicker='{"yearRange":"-100:+5","dateFormat":"MM d, yy","altField":"#_candidate_founded_date","altFormat":"yy-mm-dd"}'/>
+</div>
+</div> -->
+
+									<div class="cmb-row cmb-type-pw-select cmb2-id--candidate-gender"
+										data-fieldtype="pw_select">
+										<div class="cmb-th">
+											<label for="_candidate_gender">Gender</label>
+										</div>
+										<div class="cmb-td">
+											<select class="pw_select2 pw_select" name="gender" id="_candidate_gender"
+												data-placeholder='' data-hash='403mu1965l40' data-allowclear='1'
+												data-width='100%'>
+												<option></option>
+												<option value="Both"></option>
+												<!-- <option value="Male"  selected='selected'>{{candidate.gender}}</option>
+<option value="Female" >Female</option>
+<option value="Male" >Male</option>
+<option value="Other" >Other</option> -->
+												{% if candidate.gender == "Female" %}
+												<option value="Female" selected="selected">Female
+												</option>
+												{% else %}
+												<option value="Female">Female</option>
+												{% endif %}
+
+												{% if candidate.gender == "Male" %}
+												<option value="Male" selected="selected">Male
+												</option>
+												{% else %}
+												<option value="Male">Male</option>
+												{% endif %}
+
+												{% if candidate.gender == "Other" %}
+												<option value="Other" selected="selected">Other
+												</option>
+												{% else %}
+												<option value="Other">Other</option>
+												{% endif %}
+
+											</select>
+										</div>
+									</div>
+									<!-- 
+<div class="cmb-row cmb-type-pw-select cmb2-id--candidate-age" data-fieldtype="pw_select">
+<div class="cmb-th">
+<label for="_candidate_age">Age</label>
+</div>
+<div class="cmb-td">
+<select class="pw_select2 pw_select" name="_candidate_age" id="_candidate_age" data-placeholder='' data-hash='pcqjooh1qj40' data-allowclear='1' data-width='100%'><option></option>	<option value="18-20" >18-20</option>
+<option value="20-25" >20-25</option>
+<option value="25-30"  selected='selected'>25-30</option>
+<option value="30-35" >30-35</option>
+<option value="35-40" >35-40</option>
+</select>
+</div>
+</div> -->
+
+
+									<!-- jQuery library -->
+									<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+									<!-- jQuery UI library -->
+									<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+									<link rel="stylesheet"
+										href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+									<script>
+										$(function () {
+											$(".wjbp-datepicker2").datepicker({
+												yearRange: "-100:+5", // Range of years to display in the year drop-down
+												dateFormat: "MM d, yy", // Date format to display in the input field ("March 7, 2024")
+												altField: "#_candidate_founded_date", // Alternate field to store the date in YYYY-MM-DD format
+												<!--            altFormat: "dd-mm-yy", // Format for the alternate field ("2024-03-07")-->
+												maxDate: 0 // Restrict selection to today and past dates
+											});
+										});
+									</script>
+
+
+
+
+
+									<div class="cmb-row cmb-type-wjbp-datepicker2 cmb2-id--candidate-founded-date"
+										data-fieldtype="wjbp_datepicker2">
+										<div class="cmb-th">
+											<label for="_candidate_founded_date">Date of
+												Birth</label>
+										</div>
+										<!--										<div class="cmb-td">-->
+										<!--											<input type="text" class="wjbp-datepicker2" name="dob"-->
+										<!--												id="_candidate_founded_date" value="{{candidate.dob}}" placeholder=""-->
+										<!--												data-hash='4vaog8iecpc0'-->
+										<!--												data-datepicker='{"yearRange":"-100:+5","dateFormat":"MM d, yy","altField":"#_candidate_founded_date","altFormat":"yy-mm-dd","maxDate":0}' />-->
+
+										<!--										</div>-->
+
+										<div class="cmb-td">
+											<input type="text" class="wjbp-datepicker2" name="dob"
+												id="_candidate_founded_date" value="{{ candidate.dob }}" placeholder=""
+												data-hash='4vaog8iecpc0'
+												data-datepicker='{"yearRange":"-100:+5","dateFormat":"dd-mm-yy","altField":"#_candidate_founded_date","altFormat":"yy-mm-dd","maxDate":0}' />
+										</div>
+									</div>
+
+
+
+									<div class="cmb-row cmb-type-text cmb2-id--candidate-phone table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_candidate_phone">Phone Number</label>
+										</div>
+										<div class="cmb-td">
+											<input type="text" class="regular-text" name="phone" id="_candidate_phone"
+												value="{{candidate.phone}}" data-hash='tnd5t63i70g0' />
+										</div>
+									</div>
+
+									<div class="cmb-row cmb-type-text cmb2-id--candidate-email table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_candidate_email">Email</label>
+										</div>
+										<div class="cmb-td">
+											<input type="text" class="regular-text" name="email" id="_candidate_email"
+												value="{{candidate.email}}" data-hash='42cv4u40iei0' />
+										</div>
+									</div>
+
+
+
+
+
+
+
+									<!-- <div class="cmb-row cmb-type-pw-select cmb2-id--candidate-qualification" data-fieldtype="pw_select">
+<div class="cmb-th">
+<label for="_candidate_qualification">Qualification</label>
+</div>
+<div class="cmb-td">
+<select class="pw_select2 pw_select" name="_candidate_qualification" id="_candidate_qualification" data-placeholder='' data-hash='s3ho3to0t8s0' data-allowclear='1' data-width='100%'><option></option>	<option value="Certificate" >Certificate</option>
+<option value="Associate Degree"  selected='selected'>Associate Degree</option>
+<option value="Bachelor Degree" >Bachelor Degree</option>
+<option value="Master’s Degree" >Master’s Degree</option>
+<option value="Doctorate Degree" >Doctorate Degree</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-pw-select cmb2-id--candidate-experience-time" data-fieldtype="pw_select">
+<div class="cmb-th">
+<label for="_candidate_experience_time">Experience Time</label>
+</div>
+<div class="cmb-td">
+<select class="pw_select2 pw_select" name="_candidate_experience_time" id="_candidate_experience_time" data-placeholder='' data-hash='216g2k73unbg' data-allowclear='1' data-width='100%'><option></option>	<option value="Fresh" >Fresh</option>
+<option value="1 Year" >1 Year</option>
+<option value="2 Year"  selected='selected'>2 Year</option>
+<option value="3 Year" >3 Year</option>
+<option value="4 Year" >4 Year</option>
+<option value="5 Year" >5 Year</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-pw-multiselect cmb2-id--candidate-languages table-layout" data-fieldtype="pw_multiselect">
+<div class="cmb-th">
+<label for="_candidate_languages">Languages</label>
+</div>
+<div class="cmb-td">
+<select multiple="multiple" style="width: 99%" class="pw_select2 pw_multiselect" name="_candidate_languages[]" id="_candidate_languages" data-placeholder='' data-hash='4aj3tq624e80' data-allowclear='1' data-width='100%'>	<option value="French"  selected='selected'>French</option>
+<option value="English" >English</option>
+<option value="Turkish" >Turkish</option>
+<option value="Japanese" >Japanese</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-pw-select cmb2-id--candidate-salary-type" data-fieldtype="pw_select">
+<div class="cmb-th">
+<label for="_candidate_salary_type">Salary Type</label>
+</div>
+<div class="cmb-td">
+<select class="pw_select2 pw_select" name="_candidate_salary_type" id="_candidate_salary_type" data-placeholder='' data-hash='65g1bqgffno0' data-allowclear='1' data-width='100%'><option></option>	<option value="monthly" >Monthly</option>
+<option value="weekly" >Weekly</option>
+<option value="daily" >Daily</option>
+<option value="hourly"  selected='selected'>Hourly</option>
+<option value="yearly" >Yearly</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-text cmb2-id--candidate-salary table-layout" data-fieldtype="text">
+<div class="cmb-th">
+<label for="_candidate_salary">Salary ($)</label>
+</div>
+<div class="cmb-td">
+<input type="text" class="regular-text" name="_candidate_salary" id="_candidate_salary" value="10" data-hash='7qq7r0erek30'/>
+</div>
+</div><div class="cmb-row cmb-type-pw-taxonomy-multiselect cmb2-id--candidate-category table-layout" data-fieldtype="pw_taxonomy_multiselect">
+<div class="cmb-th">
+<label for="_candidate_category">Categories</label>
+</div>
+<div class="cmb-td">
+<select multiple="multiple" style="width: 99%" class="pw_taxonomy_select2 pw_taxonomy_multiselect" name="_candidate_category[]" id="_candidate_category" data-placeholder='' data-hash='1rvs286cgkoo'>	<option value="55"  selected='selected'>Application</option>
+<option value="54" >Advertising</option>
+<option value="56" >Customer</option>
+<option value="58" >Design</option>
+<option value="57" >Developer</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-pw-select cmb2-id--candidate-show-profile" data-fieldtype="pw_select">
+<div class="cmb-th">
+<label for="_candidate_show_profile">Show my profile</label>
+</div>
+<div class="cmb-td">
+<select class="pw_select2 pw_select" name="_candidate_show_profile" id="_candidate_show_profile" data-placeholder='' data-hash='2l7cdjsrp5mg' data-allowclear='1' data-width='100%'><option></option>	<option value="show"  selected='selected'>Show</option>
+<option value="hide" >Hide</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-text cmb2-id--candidate-job-title table-layout" data-fieldtype="text">
+<div class="cmb-th">
+<label for="_candidate_job_title">Job Title</label>
+</div>
+<div class="cmb-td">
+<input type="text" class="regular-text" name="_candidate_job_title" id="_candidate_job_title" value="UI Designer" data-hash='4os1okugmpa0'/>
+</div>
+</div> -->
+
+
+
+
+
+									<div class="cmb-row cmb-type-wysiwyg cmb2-id--candidate-description"
+										data-fieldtype="wysiwyg">
+										<div class="cmb-th">
+											<label for="_candidate_description">Description</label>
+										</div>
+										<div class="cmb-td">
+											<div id="wp-_candidate_description-wrap"
+												class="wp-core-ui wp-editor-wrap tmce-active">
+												<!--												<link rel='stylesheet' id='dashicons-css'-->
+												<!--													href='https://apusthemes.com/wp-demo/superio/wp-includes/css/dashicons.min.css?ver=6.4.3'-->
+												<!--													type='text/css' media='all' />-->
+												<!--												<link rel='stylesheet' id='editor-buttons-css'-->
+												<!--													href='https://apusthemes.com/wp-demo/superio/wp-includes/css/editor.min.css?ver=6.4.3'-->
+												<!--													type='text/css' media='all' />-->
+												<!--												<div id="wp-_candidate_description-editor-tools"-->
+												<!--													class="wp-editor-tools hide-if-no-js">-->
+												<!--													<div class="wp-editor-tabs"><button type="button"-->
+												<!--															id="_candidate_description-tmce"-->
+												<!--															class="wp-switch-editor switch-tmce"-->
+												<!--															data-wp-editor-id="_candidate_description">Visual</button>-->
+												<!--														<button type="button" id="_candidate_description-html"-->
+												<!--															class="wp-switch-editor switch-html"-->
+												<!--															data-wp-editor-id="_candidate_description">Text</button>-->
+												<!--													</div>-->
+											</div>
+
+
+
+
+											<div id="wp-_candidate_description-editor-container"
+												class="wp-editor-container">
+												<div id="qt__candidate_description_toolbar"
+													class="quicktags-toolbar hide-if-no-js">
+												</div>
+												<textarea class="wp-editor-area" rows="8" autocomplete="off" cols="40"
+													name="bio" id="_candidate_description">{{candidate.bio}}</textarea>
+
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--								<div id="heading-custom-heading-33"-->
+							<!--									class="before-group-row before-group-row-1  columns-1">-->
+							<!--									<div class="before-group-row-inner">-->
+							<!--										<div class="cmb-row cmb-type-title cmb2-id-custom-heading-33"-->
+							<!--											data-fieldtype="title">-->
+
+							<!--											<div class="cmb-td">-->
+							<!--												<h5 class="cmb2-metabox-title" id="custom-heading-33"-->
+							<!--													data-hash='7vr8fb4f9sp0'>-->
+							<!--													Social Network</h5>-->
+							<!--											</div>-->
+							<!--										</div>-->
+							<!--										<div class="cmb-row cmb-repeat-group-wrap cmb-type-group cmb2-id&#45;&#45;candidate-socials cmb-repeat"-->
+							<!--											data-fieldtype="group">-->
+							<!--											<div class="cmb-td">-->
+							<!--												<div data-groupid="_candidate_socials" id="_candidate_socials_repeat"-->
+							<!--													class="cmb-nested cmb-field-list cmb-repeatable-group non-sortable repeatable"-->
+							<!--													style="width:100%;">-->
+							<!--													<div id="cmb-group-_candidate_socials-0"-->
+							<!--														class="postbox cmb-row cmb-repeatable-grouping closed"-->
+							<!--														data-iterator="0"><button type="button"-->
+							<!--															data-selector="_candidate_socials_repeat" data-confirm=""-->
+							<!--															class="dashicons-before dashicons-no-alt cmb-remove-group-row"-->
+							<!--															title="Remove Network"></button>-->
+							<!--														<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--														<h3 class="cmb-group-title cmbhandle-title">-->
+							<!--															<span>Network 1</span>-->
+							<!--														</h3>-->
+
+							<!--														<div class="inside cmb-td cmb-nested cmb-field-list">-->
+							<!--															<div class="cmb-row cmb-type-select cmb2-id&#45;&#45;candidate-socials-0-network cmb-repeat-group-field"-->
+							<!--																data-fieldtype="select">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label-->
+							<!--																		for="_candidate_socials_0_network">Network</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<select class="cmb2_select"-->
+							<!--																		name="_candidate_socials[0][network]"-->
+							<!--																		id="_candidate_socials_0_network"-->
+							<!--																		data-hash='3ocd0q82oak0'>-->
+							<!--																		<option value="facebook" selected='selected'>-->
+							<!--																			Facebook</option>-->
+							<!--																		<option value="twitter">-->
+							<!--																			Twitter</option>-->
+							<!--																		<option value="linkedin">-->
+							<!--																			Linkedin</option>-->
+							<!--																		<option value="dribbble">-->
+							<!--																			Dribbble</option>-->
+							<!--																		<option value="tumblr">-->
+							<!--																			Tumblr</option>-->
+							<!--																		<option value="pinterest">-->
+							<!--																			Pinterest</option>-->
+							<!--																		<option value="instagram">-->
+							<!--																			Instagram</option>-->
+							<!--																		<option value="youtube">-->
+							<!--																			Youtube</option>-->
+							<!--																		<option value="tiktok">-->
+							<!--																			Tiktok</option>-->
+							<!--																		<option value="telegram">-->
+							<!--																			Telegram</option>-->
+							<!--																		<option value="discord">-->
+							<!--																			Discord</option>-->
+							<!--																	</select>-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-type-text cmb2-id&#45;&#45;candidate-socials-0-url cmb-repeat-group-field table-layout"-->
+							<!--																data-fieldtype="text">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label for="_candidate_socials_0_url">Url</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<input type="text" class="regular-text"-->
+							<!--																		name="_candidate_socials[0][url]"-->
+							<!--																		id="_candidate_socials_0_url" value="#"-->
+							<!--																		data-hash='3098diak8qc0' />-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-remove-field-row">-->
+							<!--																<div class="cmb-remove-row">-->
+							<!--																	<button type="button"-->
+							<!--																		data-selector="_candidate_socials_repeat"-->
+							<!--																		data-confirm=""-->
+							<!--																		class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove-->
+							<!--																		Network</button>-->
+							<!--																</div>-->
+							<!--															</div>-->
+
+							<!--														</div>-->
+							<!--													</div>-->
+
+							<!--													<div id="cmb-group-_candidate_socials-1"-->
+							<!--														class="postbox cmb-row cmb-repeatable-grouping closed"-->
+							<!--														data-iterator="1"><button type="button"-->
+							<!--															data-selector="_candidate_socials_repeat" data-confirm=""-->
+							<!--															class="dashicons-before dashicons-no-alt cmb-remove-group-row"-->
+							<!--															title="Remove Network"></button>-->
+							<!--														<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--														<h3 class="cmb-group-title cmbhandle-title">-->
+							<!--															<span>Network 2</span>-->
+							<!--														</h3>-->
+
+							<!--														<div class="inside cmb-td cmb-nested cmb-field-list">-->
+							<!--															<div class="cmb-row cmb-type-select cmb2-id&#45;&#45;candidate-socials-1-network cmb-repeat-group-field"-->
+							<!--																data-fieldtype="select">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label-->
+							<!--																		for="_candidate_socials_1_network">Network</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<select class="cmb2_select"-->
+							<!--																		name="_candidate_socials[1][network]"-->
+							<!--																		id="_candidate_socials_1_network"-->
+							<!--																		data-hash='7ptdu2l274l0'>-->
+							<!--																		<option value="facebook">-->
+							<!--																			Facebook</option>-->
+							<!--																		<option value="twitter" selected='selected'>-->
+							<!--																			Twitter</option>-->
+							<!--																		<option value="linkedin">-->
+							<!--																			Linkedin</option>-->
+							<!--																		<option value="dribbble">-->
+							<!--																			Dribbble</option>-->
+							<!--																		<option value="tumblr">-->
+							<!--																			Tumblr</option>-->
+							<!--																		<option value="pinterest">-->
+							<!--																			Pinterest</option>-->
+							<!--																		<option value="instagram">-->
+							<!--																			Instagram</option>-->
+							<!--																		<option value="youtube">-->
+							<!--																			Youtube</option>-->
+							<!--																		<option value="tiktok">-->
+							<!--																			Tiktok</option>-->
+							<!--																		<option value="telegram">-->
+							<!--																			Telegram</option>-->
+							<!--																		<option value="discord">-->
+							<!--																			Discord</option>-->
+							<!--																	</select>-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-type-text cmb2-id&#45;&#45;candidate-socials-1-url cmb-repeat-group-field table-layout"-->
+							<!--																data-fieldtype="text">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label for="_candidate_socials_1_url">Url</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<input type="text" class="regular-text"-->
+							<!--																		name="_candidate_socials[1][url]"-->
+							<!--																		id="_candidate_socials_1_url" value="#"-->
+							<!--																		data-hash='74hhfmnrp490' />-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-remove-field-row">-->
+							<!--																<div class="cmb-remove-row">-->
+							<!--																	<button type="button"-->
+							<!--																		data-selector="_candidate_socials_repeat"-->
+							<!--																		data-confirm=""-->
+							<!--																		class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove-->
+							<!--																		Network</button>-->
+							<!--																</div>-->
+							<!--															</div>-->
+
+							<!--														</div>-->
+							<!--													</div>-->
+
+							<!--													<div id="cmb-group-_candidate_socials-2"-->
+							<!--														class="postbox cmb-row cmb-repeatable-grouping closed"-->
+							<!--														data-iterator="2"><button type="button"-->
+							<!--															data-selector="_candidate_socials_repeat" data-confirm=""-->
+							<!--															class="dashicons-before dashicons-no-alt cmb-remove-group-row"-->
+							<!--															title="Remove Network"></button>-->
+							<!--														<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--														<h3 class="cmb-group-title cmbhandle-title">-->
+							<!--															<span>Network 3</span>-->
+							<!--														</h3>-->
+
+							<!--														<div class="inside cmb-td cmb-nested cmb-field-list">-->
+							<!--															<div class="cmb-row cmb-type-select cmb2-id&#45;&#45;candidate-socials-2-network cmb-repeat-group-field"-->
+							<!--																data-fieldtype="select">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label-->
+							<!--																		for="_candidate_socials_2_network">Network</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<select class="cmb2_select"-->
+							<!--																		name="_candidate_socials[2][network]"-->
+							<!--																		id="_candidate_socials_2_network"-->
+							<!--																		data-hash='31emf0h0huqg'>-->
+							<!--																		<option value="facebook">-->
+							<!--																			Facebook</option>-->
+							<!--																		<option value="twitter">-->
+							<!--																			Twitter</option>-->
+							<!--																		<option value="linkedin" selected='selected'>-->
+							<!--																			Linkedin</option>-->
+							<!--																		<option value="dribbble">-->
+							<!--																			Dribbble</option>-->
+							<!--																		<option value="tumblr">-->
+							<!--																			Tumblr</option>-->
+							<!--																		<option value="pinterest">-->
+							<!--																			Pinterest</option>-->
+							<!--																		<option value="instagram">-->
+							<!--																			Instagram</option>-->
+							<!--																		<option value="youtube">-->
+							<!--																			Youtube</option>-->
+							<!--																		<option value="tiktok">-->
+							<!--																			Tiktok</option>-->
+							<!--																		<option value="telegram">-->
+							<!--																			Telegram</option>-->
+							<!--																		<option value="discord">-->
+							<!--																			Discord</option>-->
+							<!--																	</select>-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-type-text cmb2-id&#45;&#45;candidate-socials-2-url cmb-repeat-group-field table-layout"-->
+							<!--																data-fieldtype="text">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label for="_candidate_socials_2_url">Url</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<input type="text" class="regular-text"-->
+							<!--																		name="_candidate_socials[2][url]"-->
+							<!--																		id="_candidate_socials_2_url" value="#"-->
+							<!--																		data-hash='nfe22ts4qbo0' />-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-remove-field-row">-->
+							<!--																<div class="cmb-remove-row">-->
+							<!--																	<button type="button"-->
+							<!--																		data-selector="_candidate_socials_repeat"-->
+							<!--																		data-confirm=""-->
+							<!--																		class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove-->
+							<!--																		Network</button>-->
+							<!--																</div>-->
+							<!--															</div>-->
+
+							<!--														</div>-->
+							<!--													</div>-->
+
+							<!--													<div id="cmb-group-_candidate_socials-3"-->
+							<!--														class="postbox cmb-row cmb-repeatable-grouping closed"-->
+							<!--														data-iterator="3"><button type="button"-->
+							<!--															data-selector="_candidate_socials_repeat" data-confirm=""-->
+							<!--															class="dashicons-before dashicons-no-alt cmb-remove-group-row"-->
+							<!--															title="Remove Network"></button>-->
+							<!--														<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--														<h3 class="cmb-group-title cmbhandle-title">-->
+							<!--															<span>Network 4</span>-->
+							<!--														</h3>-->
+
+							<!--														<div class="inside cmb-td cmb-nested cmb-field-list">-->
+							<!--															<div class="cmb-row cmb-type-select cmb2-id&#45;&#45;candidate-socials-3-network cmb-repeat-group-field"-->
+							<!--																data-fieldtype="select">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label-->
+							<!--																		for="_candidate_socials_3_network">Network</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<select class="cmb2_select"-->
+							<!--																		name="_candidate_socials[3][network]"-->
+							<!--																		id="_candidate_socials_3_network"-->
+							<!--																		data-hash='699u9uepbla0'>-->
+							<!--																		<option value="facebook">-->
+							<!--																			Facebook</option>-->
+							<!--																		<option value="twitter">-->
+							<!--																			Twitter</option>-->
+							<!--																		<option value="linkedin">-->
+							<!--																			Linkedin</option>-->
+							<!--																		<option value="dribbble">-->
+							<!--																			Dribbble</option>-->
+							<!--																		<option value="tumblr">-->
+							<!--																			Tumblr</option>-->
+							<!--																		<option value="pinterest">-->
+							<!--																			Pinterest</option>-->
+							<!--																		<option value="instagram" selected='selected'>-->
+							<!--																			Instagram</option>-->
+							<!--																		<option value="youtube">-->
+							<!--																			Youtube</option>-->
+							<!--																		<option value="tiktok">-->
+							<!--																			Tiktok</option>-->
+							<!--																		<option value="telegram">-->
+							<!--																			Telegram</option>-->
+							<!--																		<option value="discord">-->
+							<!--																			Discord</option>-->
+							<!--																	</select>-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-type-text cmb2-id&#45;&#45;candidate-socials-3-url cmb-repeat-group-field table-layout"-->
+							<!--																data-fieldtype="text">-->
+							<!--																<div class="cmb-th">-->
+							<!--																	<label for="_candidate_socials_3_url">Url</label>-->
+							<!--																</div>-->
+							<!--																<div class="cmb-td">-->
+							<!--																	<input type="text" class="regular-text"-->
+							<!--																		name="_candidate_socials[3][url]"-->
+							<!--																		id="_candidate_socials_3_url" value="#"-->
+							<!--																		data-hash='7q531li2m1e0' />-->
+							<!--																</div>-->
+							<!--															</div>-->
+							<!--															<div class="cmb-row cmb-remove-field-row">-->
+							<!--																<div class="cmb-remove-row">-->
+							<!--																	<button type="button"-->
+							<!--																		data-selector="_candidate_socials_repeat"-->
+							<!--																		data-confirm=""-->
+							<!--																		class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove-->
+							<!--																		Network</button>-->
+							<!--																</div>-->
+							<!--															</div>-->
+
+							<!--														</div>-->
+							<!--													</div>-->
+							<!--													<div class="cmb-row">-->
+							<!--														<div class="cmb-td">-->
+							<!--															<p class="cmb-add-row">-->
+							<!--																<button type="button"-->
+							<!--																	data-selector="_candidate_socials_repeat"-->
+							<!--																	data-grouptitle="Network {#}"-->
+							<!--																	class="cmb-add-group-row button-secondary">Add-->
+							<!--																	Another Network</button>-->
+							<!--															</p>-->
+							<!--														</div>-->
+							<!--													</div>-->
+							<!--												</div>-->
+							<!--											</div>-->
+							<!--										</div>-->
+							<!--									</div>-->
+							<!--								</div>-->
+
+
+
+							<!-- <div id="heading-custom-heading-34" class="before-group-row before-group-row-2  columns-1"><div class="before-group-row-inner"><div class="cmb-row cmb-type-title cmb2-id-custom-heading-34" data-fieldtype="title">
+
+
+<!-- <div class="cmb-td">
+<h5  class="cmb2-metabox-title" id="custom-heading-34" data-hash='9mc6o0gbk600'>Contact Information</h5>
+</div>
+</div><div class="cmb-row cmb-type-text cmb2-id--candidate-address table-layout" data-fieldtype="text">
+<div class="cmb-th">
+<label for="_candidate_address">Friendly Address</label>
+</div>
+<div class="cmb-td">
+<input type="text" class="regular-text" name="_candidate_address" id="_candidate_address" value="215 Hicks St, Brooklyn, NY" data-hash='12ciphf190do'/>
+</div>
+</div><div class="cmb-row cmb-type-pw-taxonomy-select-search cmb2-id--candidate-location" data-fieldtype="pw_taxonomy_select_search">
+<div class="cmb-th">
+<label for="_candidate_location">Location</label>
+</div>
+<div class="cmb-td">
+<select class="pw_taxonomy_select2_search pw_taxonomy_select_search" name="_candidate_location" id="_candidate_location" data-placeholder='Select %s' data-taxonomy='candidate_location' data-hash='42kohreo2a50' placeholder="Select %s">	<option value="66"  selected='selected'>New York</option>
+</select>
+</div>
+</div><div class="cmb-row cmb-type-pw-map cmb2-id--candidate-map-location" data-fieldtype="pw_map">
+<div class="cmb-th">
+<label for="_candidate_map_location">Maps Location</label>
+</div>
+<div class="cmb-td">
+<div class="pw-map-search-wrapper"><input type="text" class="large-text pw-map-search" name="_candidate_map_location[address]" id="_candidate_map_locationMzACP" value="229-215 Hicks St, Brooklyn, NY" data-hash='6eog6r3lq7h0'/><span class="find-me-location"></span></div><div id="_candidate_map_location-mapMzACP" class="pw-map"></div><input type="text" class="pw-map-latitude" name="_candidate_map_location[latitude]" id="_candidate_map_location_latitudeMzACP" value="40.69499198068389" placeholder="Latitude" data-hash='6eog6r3lq7h0'/><input type="text" class="pw-map-longitude" name="_candidate_map_location[longitude]" id="_candidate_map_location_longitudeMzACP" value="-73.9959976171989" placeholder="Longitude" data-hash='6eog6r3lq7h0'/><div class="hidden pw-map-properties" data-name="_candidate_map_location_properties"></div>
+</div>
+</div><div class="cmb-row cmb-type-text cmb2-id--candidate-video-url table-layout" data-fieldtype="text">
+<div class="cmb-th">
+<label for="_candidate_video_url">Introduction Video</label>
+</div>
+<div class="cmb-td">
+<input type="text" class="regular-text" name="_candidate_video_url" id="_candidate_video_url" value="https://www.youtube.com/watch?v=nrJtHemSPW4" data-hash='6p35f50usf80'/>
+</div>
+</div></div></div></div></div><input type="hidden" class="cmb2-hidden" name="_candidate_post_type" id="_candidate_post_type" value="candidate" data-hash='3flrsdkel6fg'/>-->
+							<input type="submit" name="submit-cmb-profile" value="Save Profile" class="button-primary">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div><!-- .content-area -->
+
+{% endblock %}

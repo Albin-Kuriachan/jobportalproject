@@ -1,33 +1,93 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Company Jobs</title>
 </head>
-<body>
-    <h1>Jobs Offered by the Company</h1>
-    <ul>
-        {% for job in job_data %}
-            <li>
-                <h2>{{ job.job_title }}</h2>
-                <p>Description: {{ job.description }}</p>
-                <p>Employment Type: {{ job.employment_type }}</p>
-                <p>Experience: {{ job.experience }}</p>
-                <p>Location: {{ job.location }}</p>
-                <p>Posted Date: {{ job.posted_date }}</p>
-                <p>Expiry Date: {{ job.expairy_date }}</p>
-                <p>Expiry Date: {{ job.id }}</p>
+<!--<body>-->
+<!--    <h1>Jobs Offered by the Company</h1>-->
+<!--    <ul>-->
+<!--        {% for job in job_data %}-->
+<!--            <li>-->
+<!--                <h2>{{ job.job_title }}</h2>-->
+<!--                <p>Description: {{ job.description }}</p>-->
+<!--                <p>Employment Type: {{ job.employment_type }}</p>-->
+<!--                <p>Experience: {{ job.experience }}</p>-->
+<!--                <p>Location: {{ job.location }}</p>-->
+<!--                <p>Posted Date: {{ job.posted_date }}</p>-->
+<!--                <p>Expiry Date: {{ job.expiry_date }}</p>-->
+<!--                <p>Expiry Date: {{ job.id }}</p>-->
 
-                <a href="{% url 'edit_job_post' job_id=job.id %}">Edit</a>
-                <a href="{% url 'delete_job_post' job_id=job.id %}">Delete</a>
-                <a href="{% url 'singleJopbAppled' job_id=job.id %}">Appled For The Posr</a>
+<!--                {% for apply in applyed_number %}-->
+<!--                {% if  apply.job.id == job.id %}-->
+<!--                  {{job.id}}  {{apply.job.id}}-->
+<!--                  {% endif %}-->
+<!--         -->
+<!--                {% endfor %}-->
 
 
 
-            </li>
-        {% empty %}
-            <li>No jobs available</li>
+
+<!--              -->
+
+
+
+
+<!--                <a href="{% url 'edit_job_post' job_id=job.id %}">Edit</a>-->
+<!--                <a href="{% url 'delete_job_post' job_id=job.id %}">Delete</a>-->
+<!--                <a href="{% url 'singleJopbAppled' job_id=job.id %}">Appled For The Post</a>-->
+
+
+
+<!--            </li>-->
+<!--        {% empty %}-->
+<!--            <li>No jobs available</li>-->
+<!--        {% endfor %}-->
+
+<!--        jjjsksdk-->
+
+<!--        {% for apply in applyed_number %}-->
+<!--        {{ apply.job.id }}-->
+<!--         -->
+<!--    {% endfor %}-->
+
+
+
+
+
+
+
+
+
+<!--    -->
+<!--    -->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
+
+{% for job in job_data %}
+    <li>
+        <h2>{{ job.job_title }}</h2>
+        <p>Description: {{ job.description }}</p>
+        <p>Employment Type: {{ job.employment_type }}</p>
+        <p>Experience: {{ job.experience }}</p>
+        <p>Location: {{ job.location }}</p>
+        <p>Posted Date: {{ job.posted_date }}</p>
+        <p>Expiry Date: {{ job.expiry_date }}</p>
+
+
+       {% for job_id, apply_count in apply_counts.items %}
+        {% if job_id == job.id %}
+        <p>Apply count: {{ apply_count }}</p>
+        {% endif %}
         {% endfor %}
-    </ul>
-</body>
-</html>
+
+                <a href="{% url 'edit_job_post' job_id=job.id %}">Edit</a><br>
+                <a href="{% url 'delete_job_post' job_id=job.id %}">Delete</a><br>
+                <a href="{% url 'singleJopbAppled' job_id=job.id %}">Applyed For The Post</a><br>
+
+    </li>
+
+
+
+{% endfor %}

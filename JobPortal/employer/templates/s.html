@@ -1,0 +1,14 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.job_title }}
+    {{ form.description }}
+    {{ form.employment_type }}
+    {{ form.location }}
+    {{ form.expairy_date }}
+    {{ form.gender }}
+    {{ form.post_no }}
+    {{ form.experience }}
+    {{ form.salary }}
+    {{ form.category }}
+    <button type="submit">Submit</button>
+</form>

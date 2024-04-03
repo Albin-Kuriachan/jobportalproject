@@ -15,13 +15,15 @@ class CandidateProfile(models.Model):
         ('Other', 'Other')
     ]
 
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True) 
     email = models.EmailField(max_length=100, blank=True, null=True)
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     dob = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER, blank=True, null=True)
-    bio = models.TextField(max_length=200, blank=True, null=True)
+    bio = models.TextField(max_length=1000, blank=True, null=True)
+    phone = models.IntegerField( blank=True, null=True)
     image = models.ImageField(upload_to='profile_image', blank=True, null=True)
 
     class Meta:
@@ -69,10 +71,18 @@ class Expriance(models.Model):
     
 
 class ApplyJob(models.Model):
+    APPLY_STATUS = [
+        ('Pending', 'Pending'),
+        ('Shortlist', 'Shortlist'),
+        ('Rejected', 'Rejected'),
+        ('Approved', 'Approved')
+    ]
     candidate = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE)
     job = models.ForeignKey(JobData, on_delete=models.CASCADE)
     qualification = models.ManyToManyField(QualificationData,blank=True) 
     experiences = models.ManyToManyField(Expriance, blank=True)
+    apply_date = models.DateField(auto_now_add=True,blank=True, null=True)
+    status = models.CharField(max_length=20, choices=APPLY_STATUS,default='Pending')
 
 
     def __str__(self):

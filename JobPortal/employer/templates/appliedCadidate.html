@@ -1,32 +1,343 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applied Experiences</title>
-</head>
-<body>
-    <h1>Applied Data</h1>
-    <ul>
-    {% for apply_job in appleddata %}
-        <li>Candidate: {{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}</li>
-        <li>Job Title: {{ apply_job.job.job_title }}</li>
-        <li>Qualification:
-            <ul>
-            {% for qualification in apply_job.qualification.all %}
-                <li>{{ qualification.qualifiction_type.name }} - {{ qualification.course.name }} </li>
-            {% endfor %}
-            </ul>
-        </li>
-        <li>Experiences:
-            <ul>
-            {% for experience in apply_job.experiences.all %}
-                <li>{{ experience.companyname }} - {{ experience.numberofyears }} years</li>
-            {% endfor %}
-            </ul>
-        </li>
-        <hr>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'employer_base.html' %}
+{% block content %}
+
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+	<div id="main" class="site-main clearfix" role="main">
+
+		<div class="box-dashboard-wrapper">
+			<h3 class="widget-title">All Applicants</h3>
+			<div class="inner-list">
+				<div class="search-orderby-wrapper flex-middle-md">
+					<div class="search-applicants-form">
+						<form action="" method="get" class="my-jobs-ordering">
+							<div class="flex-middle">
+								<button class="search-submit btn btn-sm btn-search" name="submit">
+									<i class="flaticon-magnifiying-glass"></i>
+								</button>
+								<input type="text" placeholder="Search ..." class="form-control" name="search" value="">
+								<select name="job_id" class="job_id">
+									<option value="">Filter by job</option>
+									<option value="4540">Junior Graphic Designer (Web)</option>
+								</select>
+							</div>
+							<input type="hidden" name="paged" value="1" />
+						</form>
+					</div>
+					<div class="sort-applicants-form sortby-form">
+
+						<div class="orderby-wrapper flex-middle">
+							<span class="text-sort">
+								Sort by: </span>
+							<form class="my-jobs-ordering" method="get">
+								<select name="orderby" class="orderby">
+									<option value="menu_order">Default</option>
+									<option value="newest" selected='selected'>Newest</option>
+									<option value="oldest">Oldest</option>
+								</select>
+								<input type="hidden" name="paged" value="1" />
+							</form>
+						</div>
+					</div>
+				</div>
+                {% for job_data in job_data %}
+				<div class="job-applicants">
+
+
+					<div class="heading row flex-middle-sm">
+						<div class="col-sm-8 col-xs-12">
+							<h3 class="job-title">{{job_data.job_title }}</h3>
+						</div>
+<!--						<div class="col-sm-4 col-xs-12">-->
+<!--							<div class="inner-result flex-middle">-->
+<!--								<div class="total-applicants show-total-applicants active" data-job_id="4540"-->
+<!--									data-nonce="60e7cc9bd7">-->
+<!--									Total(s): <span class="number">347</span> </div>-->
+<!--								<div class="approved-applicants show-approved-applicants" data-job_id="4540"-->
+<!--									data-nonce="7773239e2c">-->
+<!--									Approved: <span class="number">116</span> </div>-->
+<!--								<div class="rejected-applicants show-rejected-applicants" data-job_id="4540"-->
+<!--									data-nonce="0f2361fc87">-->
+<!--									Rejected(s): <span class="number">24</span> </div>-->
+<!--							</div>-->
+<!--						</div>-->
+					</div>
+
+
+					<div class="applicants-wrapper">
+						<div class="applicants-inner">
+
+                                                        {% for apply_job in appleddata %}
+                                                        {% if job_data.id ==  apply_job.job.id %}
+
+
+
+							<article
+								class="applicants-job job-applicant-wrapper  post-11336 job_applicant type-job_applicant status-publish hentry">
+								<div class="candidate-list candidate-archive-layout flex-middle-sm">
+									<div class="candidate-info">
+										<div class="flex-middle">
+											<div class="candidate-info-content">
+												<div class="title-wrapper flex-middle-sm">
+													<h2 class="candidate-title">
+														<a href="{% url 'apply_candidate_profile'  pk=apply_job.candidate.id %}"
+															rel="bookmark">{{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}
+</a>
+													</h2>
+
+													{% if apply_job.status == "Pending" %}
+                        <span class="label label-warning ">Pending</span>
+                        {% elif apply_job.status == "Approved" %}
+                        <span class="label label-success">Approved</span>
+                        {% elif apply_job.status == "Rejected" %}
+                        <span class="label label-danger">Rejected</span>
+                        {% else %}
+                        <span class="label label-info pending">Shortlisted</span>
+                        {% endif %}
+												</div>
+												<div class="job-metas">
+													<h4 class="job-title">
+														<a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/"
+															class="text-theme">{{ apply_job.job.job_title }}</a>
+													</h4>
+													<div class="date">
+														<i class="bi bi-wall-clock"></i>
+														Applied date:{{ apply_job.apply_date }}
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="ali-right">
+										<div class="applicant-action-button action-button">
+											<a data-toggle="tooltip"
+												href="#job-apply-create-meeting-form-wrapper-11336-11335"
+												class="btn-create-meeting-job-applied btn-action-icon"
+												title="Create Meeting"><i class="ti-plus"></i></a>
+											<div id="job-apply-create-meeting-form-wrapper-11336-11335"
+												class="job-apply-email-form-wrapper mfp-hide">
+												<div class="inner">
+													<h2 class="widget-title"><span>Create Meeting</span></h2>
+
+													<form id="job-apply-create-meeting-form-11336-11335"
+														class="create-meeting-form" method="post" autocomplete="off">
+														<div class="form-group">
+															<label>Date</label>
+															<input type="text"
+																class="form-control style2 datetimepicker-date"
+																name="date_display" autocomplete="false"
+																placeholder="April 3, 2024" required="required"
+																data-date_format="MM d, yy"
+																data-id="#datetimepicker-date-idC2FhP">
+
+															<input id="datetimepicker-date-idC2FhP" type="hidden"
+																class="form-control" name="date" required="required">
+														</div>
+														<div class="form-group">
+															<label>Time</label>
+														</div>
+														<div class="form-group">
+															<label>Time Duration</label>
+															<input type="text" class="form-control style2"
+																name="time_duration" placeholder="30"
+																required="required">
+														</div>
+
+														<div class="form-group space-30">
+															<label>Message</label>
+															<textarea class="form-control style2" name="message"
+																placeholder="Message" required="required"></textarea>
+														</div>
+
+														<div class="form-group">
+															<label>Zoom Meeting</label>
+															<input type="checkbox" name="zoom_meeting" value="1">
+														</div>
+
+
+
+														<!-- /.form-group -->
+
+														<input type="hidden" id="nonce" name="nonce"
+															value="19410dc85b" /><input type="hidden"
+															name="_wp_http_referer"
+															value="/wp-demo/superio/applicants-jobs/" /> <input
+															type="hidden" name="action"
+															value="wp_job_board_pro_ajax_create_meeting">
+														<input type="hidden" name="application_id" value="11336">
+														<button class="button btn btn-theme btn-block"
+															name="create-meeting">Create Meeting</button>
+													</form>
+												</div>
+											</div>
+
+											<a data-toggle="tooltip" href="javascript:void(0);"
+												class="btn-approve-job-applied btn-action-icon approve"
+												data-applicant_id="11336" data-nonce="34b78979a2"
+												title="Approve Application"><i class="ti-check"></i></a>
+
+											<a data-toggle="tooltip" title="Reject Application"
+												href="javascript:void(0);"
+												class="btn-action-icon btn-reject-job-applied rejec"
+												data-applicant_id="11336" data-nonce="2474797252"><i
+													class="ti-loop"></i></a>
+
+											<a data-toggle="tooltip"
+												href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11335"
+												title="Download CV" class="btn-action-icon download"><i
+													class="ti-download"></i></a>
+
+											<a data-toggle="tooltip" title="Remove" href="javascript:void(0);"
+												class="btn-action-icon btn-remove-job-applied remove"
+												data-applicant_id="11336" data-nonce="d34d1e96af"><i
+													class="ti-close"></i></a>
+										</div>
+									</div>
+								</div>
+							</article><!-- #post-## -->
+
+                                                {% endif %}
+                                                {% endfor %}
+
+
+
+
+
+
+
+
+
+<!--							<article-->
+<!--								class="applicants-job job-applicant-wrapper clearfix  post-11327 job_applicant type-job_applicant status-publish hentry">-->
+
+<!--								<div class="candidate-list candidate-archive-layout flex-middle-sm">-->
+<!--									<div class="candidate-info">-->
+<!--										<div class="flex-middle">-->
+<!--											<div class="candidate-info-content">-->
+<!--												<div class="title-wrapper flex-middle-sm">-->
+<!--													<h2 class="candidate-title">-->
+<!--														<a href="https://apusthemes.com/wp-demo/superio/candidate/wergerg/?applicant_id=11327&#038;candidate_id=11326&#038;action=view-profile"-->
+<!--															rel="bookmark">wergerg</a>-->
+<!--													</h2>-->
+
+<!--													<span class="label label-success approved">Approved</span>-->
+<!--												</div>-->
+<!--												<div class="job-metas">-->
+<!--													<h4 class="job-title">-->
+<!--														<a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/"-->
+<!--															class="text-theme">Junior Graphic Designer (Web)</a>-->
+<!--													</h4>-->
+<!--													<div class="date">-->
+<!--														Applied date : April 2, 2024 </div>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
+
+
+
+<!--									<div class="ali-right">-->
+<!--										<div class="applicant-action-button action-button">-->
+
+<!--											<a data-toggle="tooltip"-->
+<!--												href="#job-apply-create-meeting-form-wrapper-11327-11326"-->
+<!--												class="btn-create-meeting-job-applied btn-action-icon"-->
+<!--												title="Create Meeting"><i class="ti-plus"></i></a>-->
+<!--											<div id="job-apply-create-meeting-form-wrapper-11327-11326"-->
+<!--												class="job-apply-email-form-wrapper mfp-hide">-->
+<!--												<div class="inner">-->
+<!--													<h2 class="widget-title"><span>Create Meeting</span></h2>-->
+
+<!--													<form id="job-apply-create-meeting-form-11327-11326"-->
+<!--														class="create-meeting-form" method="post" autocomplete="off">-->
+<!--														<div class="form-group">-->
+<!--															<label>Date</label>-->
+<!--															<input type="text"-->
+<!--																class="form-control style2 datetimepicker-date"-->
+<!--																name="date_display" autocomplete="false"-->
+<!--																placeholder="April 3, 2024" required="required"-->
+<!--																data-date_format="MM d, yy"-->
+<!--																data-id="#datetimepicker-date-idcImLg">-->
+
+<!--															<input id="datetimepicker-date-idcImLg" type="hidden"-->
+<!--																class="form-control" name="date" required="required">-->
+<!--														</div>-->
+<!--														<div class="form-group">-->
+<!--															<label>Time</label>-->
+<!--														</div>-->
+<!--														<div class="form-group">-->
+<!--															<label>Time Duration</label>-->
+<!--															<input type="text" class="form-control style2"-->
+<!--																name="time_duration" placeholder="30"-->
+<!--																required="required">-->
+<!--														</div>-->
+
+<!--														<div class="form-group space-30">-->
+<!--															<label>Message</label>-->
+<!--															<textarea class="form-control style2" name="message"-->
+<!--																placeholder="Message" required="required"></textarea>-->
+<!--														</div>-->
+
+<!--														<div class="form-group">-->
+<!--															<label>Zoom Meeting</label>-->
+<!--															<input type="checkbox" name="zoom_meeting" value="1">-->
+<!--														</div>-->
+
+<!--														&lt;!&ndash; /.form-group &ndash;&gt;-->
+
+<!--														<input type="hidden" id="nonce" name="nonce"-->
+<!--															value="19410dc85b" /><input type="hidden"-->
+<!--															name="_wp_http_referer"-->
+<!--															value="/wp-demo/superio/applicants-jobs/" /> <input-->
+<!--															type="hidden" name="action"-->
+<!--															value="wp_job_board_pro_ajax_create_meeting">-->
+<!--														<input type="hidden" name="application_id" value="11327">-->
+<!--														<button class="button btn btn-theme btn-block"-->
+<!--															name="create-meeting">Create Meeting</button>-->
+<!--													</form>-->
+<!--												</div>-->
+<!--											</div>-->
+
+<!--											<a data-toggle="tooltip" href="javascript:void(0);"-->
+<!--												class="btn-undo-approve-job-applied btn-action-icon approve"-->
+<!--												data-applicant_id="11327" data-nonce="698714d1b9"-->
+<!--												title="Undo Approved"><i class="fa fa-undo"></i></a>-->
+
+<!--											<a data-toggle="tooltip"-->
+<!--												href="https://apusthemes.com/wp-demo/superio/?wjbp-ajax=wp_job_board_pro_ajax_download_resume_cv&#038;post_id=11326"-->
+<!--												title="Download CV" class="btn-action-icon download"><i-->
+<!--													class="ti-download"></i></a>-->
+
+<!--											<a data-toggle="tooltip" title="Remove" href="javascript:void(0);"-->
+<!--												class="btn-action-icon btn-remove-job-applied remove"-->
+<!--												data-applicant_id="11327" data-nonce="d34d1e96af"><i-->
+<!--													class="ti-close"></i></a>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+
+<!--							</article>&lt;!&ndash; #post-## &ndash;&gt;-->
+
+						</div>
+
+<!--						<form class="applicants-pagination-form">-->
+<!--							<button class="apus-loadmore-btn">Load more</button>-->
+<!--							<input type="hidden" name="paged" value="2">-->
+<!--							<input type="hidden" name="job_id" value="4540">-->
+<!--						</form>-->
+
+
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+	</div><!-- .site-main -->
+</div><!-- .content-area -->
+</div>
+
+
+
+
+{% endblock %}

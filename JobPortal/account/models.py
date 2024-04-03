@@ -54,6 +54,6 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(_('user type'), max_length=10, choices=USER_TYPE_CHOICES, default='candidate')
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [USER_TYPE_CHOICES]
+    REQUIRED_FIELDS = ['user_type']
 
     objects = CustomUserManager()    

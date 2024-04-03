@@ -1,0 +1,648 @@
+{% extends 'employer_base.html' %}
+{% block content %}
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+	<div id="main" class="site-main clearfix" role="main">
+
+		<div class="profile-form-wrapper box-dashboard-wrapper dashboard-wrapper-v2">
+			<h1 class="title">Edit Profile</h1>
+			<div class="inner-list">
+
+				<form class="cmb-form" method="post" id="_employer_front" enctype="multipart/form-data"
+					encoding="multipart/form-data">
+					{% csrf_token %}
+
+					<input type="hidden" name="object_id" value="4676">
+					<!-- Begin CMB2 Fields -->
+					<input type="hidden" id="nonce_CMB2php_employer_front" name="nonce_CMB2php_employer_front"
+						value="a8d6e832fb" />
+					<div class="cmb2-wrap form-table">
+						<div id="cmb2-metabox-_employer_front" class="cmb2-metabox cmb-field-list">
+							<div id="heading-custom-heading-22646360"
+								class="before-group-row before-group-row-0 active columns-2">
+								<div class="before-group-row-inner">
+									<div class="cmb-row cmb-type-title cmb2-id-custom-heading-22646360"
+										data-fieldtype="title">
+
+										<div class="cmb-td">
+											<h5 class="cmb2-metabox-title" id="custom-heading-22646360"
+												data-hash='5qmd1vp73750'>My Profile</h5>
+										</div>
+									</div>
+									<div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id--employer-featured-image"
+										data-fieldtype="wp_job_board_pro_file">
+										<div class="cmb-th">
+											<label for="_employer_featured_image">Logo Image</label>
+										</div>
+										{% if form.instance.logo.url is not None %}
+										<div class="cmb-td">
+											<div class="wp-job-board-pro-uploaded-files"
+												style="width: 100px; height: 100px;">
+													<span class="wp-job-board-pro-uploaded-file-preview">
+														<img decoding="async" src="{{ form.instance.logo.url }}"
+															style="width: 100px; height: 100px;" alt="Current Image">
+													</span>
+
+
+												</div>
+											</div>
+
+										{% endif %}
+
+											<!--											{% if form.instance.logo %}-->
+											<!--											<img src="{{ form.instance.logo.url }}" style="width: 100px; height: 100px;"-->
+											<!--												alt="Current Image">-->
+											<!--											<br>-->
+											<!--											{{form.logo}}-->
+											<!--											{% endif %}-->
+											<!--											{{ form.image }}-->
+
+
+
+
+											<!--<input type="file" class="hidden wp-job-board-pro-file-upload" data-file_types="gif|png|jpg|jpeg|jpe|bmp|tiff|tif|ico|heic|asf|asx|wmv|wmx|wm|avi|divx|flv" data-mime_types="image/gif|image/png|image/jpeg|image/bmp|image/tiff|image/x-icon|image/heic|video/x-ms-asf|video/x-ms-wmv|video/x-ms-wmx|video/x-ms-wm|video/avi|video/divx|video/x-flv"  name="_employer_featured_image" data-file_limit="5" data-file_size="5"/>-->
+
+
+<!--											{{form.logo}}-->
+<!--											<style>-->
+<!--												#id_logo {-->
+<!--													display: none;-->
+<!--												}-->
+<!--											</style>-->
+<!--											<div class="label-can-drag">-->
+<!--												<div class="form-group group-upload">-->
+<!--													<div class="upload-file-btn">-->
+<!--														<span>Browse</span>-->
+<!--													</div>-->
+<!--												</div>-->
+<!--											</div>-->
+
+
+
+											 <label for="file-upload" class="custom-file-upload">
+												<i class="bi bi-cloud-upload"></i> Choose File
+											</label>
+											<input id="file-upload" type="file" name="image" accept="image/*">
+
+											<style>
+												/* Hide the default file input */
+												input[type="file"] {
+													display: none;
+												}
+
+												/* Style the custom file upload button */
+												.custom-file-upload {
+													background-color: #007bff;
+													/* Example background color */
+													color: #fff;
+													/* Example text color */
+													padding: 8px 12px;
+													/* Example padding */
+													border-radius: 4px;
+													/* Example border radius */
+													cursor: pointer;
+													/* Show pointer cursor on hover */
+													display: inline-block;
+													/* Make it behave like a button */
+													margin-top: 30px;
+													margin-left: 10px;
+												}
+
+												/* Optional: Style the icon */
+												.custom-file-upload i {
+													margin-right: 8px;
+													/* Example margin */
+												}
+											</style>
+
+
+
+
+										</div>
+									</div>
+
+									<!--				<div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id&#45;&#45;employer-cover-photo" data-fieldtype="wp_job_board_pro_file">-->
+									<!--<div class="cmb-th">-->
+									<!--<label for="_employer_cover_photo">Cover Photo</label>-->
+									<!--</div>-->
+									<!--	<div class="cmb-td">-->
+									<!--		<div class="wp-job-board-pro-uploaded-files">-->
+									<!--					</div>-->
+
+
+									<!--		<input type="file" class="hidden wp-job-board-pro-file-upload" data-file_types="gif|png" data-mime_types=""  name="_employer_cover_photo" data-file_limit="5" data-file_size="5"/>-->
+
+									<!--		<div class="label-can-drag">-->
+									<!--			<div class="form-group group-upload">-->
+									<!--		        <div class="upload-file-btn">-->
+									<!--	            	<span>Browse</span>-->
+									<!--		        </div>-->
+									<!--		    </div>-->
+									<!--		</div>-->
+
+
+									<!--	</div>-->
+									<!--</div>-->
+
+									<div class="cmb-row cmb-type-text cmb2-id--employer-title table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_employer_title">Employer name</label>
+										</div>
+										<div class="cmb-td">
+											<!--<input type="text" class="regular-text" name="_employer_title" id="_employer_title" value="Employer" data-hash='6bbfdb775lv0' required="required"/>-->
+
+											{{form.company_name}}
+										</div>
+									</div>
+
+
+									<div class="cmb-row cmb-type-text cmb2-id--employer-title table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_employer_title">Location</label>
+										</div>
+										<div class="cmb-td">
+											<!--<input type="text" class="regular-text" name="_employer_title" id="_employer_title" value="Employer" data-hash='6bbfdb775lv0' required="required"/>-->
+
+											{{form.location}}
+										</div>
+									</div>
+
+
+
+									<div class="cmb-row cmb-type-text cmb2-id--employer-email table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_employer_email">Email</label>
+										</div>
+										<div class="cmb-td">
+											<!--<input type="text" class="regular-text" name="_employer_email" id="_employer_email" value="employer@apus.com" data-hash='2hdh463uk61g'/>-->
+											{{form.email}}
+										</div>
+									</div>
+									<div class="cmb-row cmb-type-text cmb2-id--employer-phone table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_employer_phone">Phone Number</label>
+										</div>
+										<div class="cmb-td">
+											<!--<input type="text" class="regular-text" name="_employer_phone" id="_employer_phone" value="123 444 555" data-hash='61ce80bv8mk0'/>-->
+											{{form.phone}}
+										</div>
+									</div>
+									<div class="cmb-row cmb-type-text cmb2-id--employer-website table-layout"
+										data-fieldtype="text">
+										<div class="cmb-th">
+											<label for="_employer_website">Website</label>
+										</div>
+										<div class="cmb-td">
+											<!--<input type="text" class="regular-text" name="_employer_website" id="_employer_website" value="themeforest.net" data-hash='140rmt0jrdf0'/>-->
+											{{form.website}}
+										</div>
+									</div>
+									<!--                <div class="cmb-row cmb-type-text-small cmb2-id&#45;&#45;employer-founded-date" data-fieldtype="text_small">-->
+									<!--<div class="cmb-th">-->
+									<!--<label for="_employer_founded_date">Founded Date</label>-->
+									<!--</div>-->
+									<!--	<div class="cmb-td">-->
+									<!--<input type="number" class="cmb2-text-small" name="_employer_founded_date" id="_employer_founded_date" value="2005" data-hash='7u3pmk71ehc0' min="0" pattern="\d*"/>-->
+									<!--	</div>-->
+									<!--</div>-->
+									<!--                <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-company-size table-layout" data-fieldtype="text">-->
+									<!--<div class="cmb-th">-->
+									<!--<label for="_employer_company_size">Company Size</label>-->
+									<!--</div>-->
+									<!--	<div class="cmb-td">-->
+									<!--<input type="text" class="regular-text" name="_employer_company_size" id="_employer_company_size" value="50-100" data-hash='itnp8fc5lok0'/>-->
+									<!--	</div>-->
+									<!--</div>-->
+									<!--                <div class="cmb-row cmb-type-pw-taxonomy-multiselect cmb2-id&#45;&#45;employer-category table-layout" data-fieldtype="pw_taxonomy_multiselect">-->
+									<!--<div class="cmb-th">categories <span class="required">*</span></div>-->
+									<!--	<div class="cmb-td">-->
+									<!--<select multiple="multiple" style="width: 99%" class="pw_taxonomy_select2 pw_taxonomy_multiselect" name="_employer_category[]" id="_employer_category" data-placeholder='categories' data-hash='51a7skra1c20' placeholder="categories" required="required">	<option value="78"  selected='selected'>Developer</option>-->
+									<!--	<option value="75" >Advertising</option>-->
+									<!--	<option value="76" >Application</option>-->
+									<!--	<option value="77" >Customer</option>-->
+									<!--	<option value="79" >Design</option>-->
+									<!--</select>-->
+									<!--	</div>-->
+									<!--</div>-->
+
+									<!--                <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-video-url table-layout" data-fieldtype="text">-->
+									<!--<div class="cmb-th">-->
+									<!--<label for="_employer_video_url">Introduction Video URL</label>-->
+									<!--</div>-->
+									<!--	<div class="cmb-td">-->
+									<!--<input type="text" class="regular-text" name="_employer_video_url" id="_employer_video_url" value="https://www.youtube.com/watch?v=nrJtHemSPW4" data-hash='7d7bk2ue9p90'/>-->
+									<!--	</div>-->
+									<!--</div><div class="cmb-row cmb-type-wp-job-board-pro-profile-url cmb2-id&#45;&#45;employer-profile-url" data-fieldtype="wp_job_board_pro_profile_url">-->
+									<!--<div class="cmb-th">-->
+									<!--<label for="_employer_profile_url">Profile url</label>-->
+									<!--</div>-->
+
+									<!--	<div class="cmb-td">-->
+									<!--<div class="profile-url-wrapper"><div class="profile-url"><span class="post-slug">https://apusthemes.com/wp-demo/superio/employer/employer/</span> <a class="text-theme edit-profile-slug" href="javascript:void(0);">Edit</a>-->
+
+									<!--				</div><div class="profile-url-edit-wrapper">-->
+									<!--				<input type="text" class="profile-slug-input" name="profile_url_slug" value="employer">-->
+									<!--				<a class="save-profile-slug btn btn-theme" href="javascript:void(0);" data-post_id="4676" data-nonce="0ca4b022ec">Save</a>-->
+									<!--			</div></div>-->
+									<!--	</div>-->
+									<!--</div>-->
+									<!--                -->
+									<div class="cmb-row cmb-type-wysiwyg cmb2-id--employer-description"
+										data-fieldtype="wysiwyg">
+										<div class="cmb-th">
+											<label for="_employer_description">About Company</label>
+										</div>
+										<div class="cmb-td">
+											{{form.description}}
+
+											<!--<div id="wp-_employer_description-wrap" class="wp-core-ui wp-editor-wrap tmce-active"><link rel='stylesheet' id='dashicons-css' href='https://apusthemes.com/wp-demo/superio/wp-includes/css/dashicons.min.css?ver=6.4.3' type='text/css' media='all' />-->
+											<!--<link rel='stylesheet' id='editor-buttons-css' href='https://apusthemes.com/wp-demo/superio/wp-includes/css/editor.min.css?ver=6.4.3' type='text/css' media='all' />-->
+											<!--<div id="wp-_employer_description-editor-tools" class="wp-editor-tools hide-if-no-js"><div class="wp-editor-tabs"><button type="button" id="_employer_description-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="_employer_description">Visual</button>-->
+											<!--<button type="button" id="_employer_description-html" class="wp-switch-editor switch-html" data-wp-editor-id="_employer_description">Text</button>-->
+											<!--</div>-->
+											<!--</div>-->
+											<!--<div id="wp-_employer_description-editor-container" class="wp-editor-container"><div id="qt__employer_description_toolbar" class="quicktags-toolbar hide-if-no-js"></div><textarea class="wp-editor-area" rows="8" autocomplete="off" cols="40" name="_employer_description" id="_employer_description">Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider.-->
+
+											<!--Moody’s was founded by John Moody in 1909 to produce manuals of statistics related to stocks and bonds and bond ratings. Moody’s was acquired by Dun &amp;amp;amp; Bradstreet in 1962. In 2000, Dun &amp;amp;amp; Bradstreet spun off Moody’s Corporation as a separate company that was listed on the NYSE under MCO. In 2007, Moody’s Corporation was split into two operating divisions, Moody’s Investors Service, the rating agency, and Moody’s Analytics, with all of its other products.-->
+
+											<!--Moody’s Corporation, often referred to as Moody’s, is an American business and financial services company. It is the holding company for Moody’s Investors Service (MIS), an American credit rating agency, and Moody’s Analytics (MA), an American provider of financial analysis software and services.</textarea></div>-->
+											<!--</div>-->
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--                <div id="heading-custom-heading-26792578" class="before-group-row before-group-row-1  columns-1"><div class="before-group-row-inner"><div class="cmb-row cmb-type-title cmb2-id-custom-heading-26792578" data-fieldtype="title">-->
+
+							<!--	<div class="cmb-td">-->
+							<!--<h5  class="cmb2-metabox-title" id="custom-heading-26792578" data-hash='47k1t337c7d0'> Profile Photos</h5>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id&#45;&#45;employer-profile-photos" data-fieldtype="wp_job_board_pro_file">-->
+
+							<!--	<div class="cmb-td">-->
+							<!--		<div class="wp-job-board-pro-uploaded-files">-->
+							<!--																		<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2482" />-->
+
+							<!--</div>											<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog5-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2481" />-->
+
+							<!--</div>											<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog4-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2480" />-->
+
+							<!--</div>											<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog3-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2479" />-->
+
+							<!--</div>											<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog2-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2478" />-->
+
+							<!--</div>											<div class="wp-job-board-pro-uploaded-file">-->
+							<!--					<span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog1-200x200.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span>-->
+
+							<!--	<input type="hidden" class="input-text" name="current__employer_profile_photos[]" value="2477" />-->
+
+							<!--</div>														</div>-->
+
+
+							<!--		<input type="file" class="hidden wp-job-board-pro-file-upload" data-file_types="png|jpg|jpeg|jpe|gif" data-mime_types="" multiple name="_employer_profile_photos[]" data-file_limit="5" data-file_size="5"/>-->
+
+							<!--		<div class="label-can-drag">-->
+							<!--			<div class="form-group group-upload">-->
+							<!--		        <div class="upload-file-btn">-->
+							<!--	            	<span>Browse</span>-->
+							<!--		        </div>-->
+							<!--		    </div>-->
+							<!--		</div>-->
+
+
+							<!--	</div>-->
+							<!--</div></div></div>-->
+
+							<!--                <div id="heading-custom-heading-25643843" class="before-group-row before-group-row-2  columns-1"><div class="before-group-row-inner"><div class="cmb-row cmb-type-title cmb2-id-custom-heading-25643843" data-fieldtype="title">-->
+
+							<!--	<div class="cmb-td">-->
+							<!--<h5  class="cmb2-metabox-title" id="custom-heading-25643843" data-hash='1g5idchmr7ro'>Members</h5>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-repeat-group-wrap cmb-type-group cmb2-id&#45;&#45;employer-team-members cmb-repeat" data-fieldtype="group"><div class="cmb-td"><div data-groupid="_employer_team_members" id="_employer_team_members_repeat"  class="cmb-nested cmb-field-list cmb-repeatable-group sortable repeatable" style="width:100%;">-->
+							<!--		<div id="cmb-group-_employer_team_members-0" class="postbox cmb-row cmb-repeatable-grouping closed" data-iterator="0"><button type="button" data-selector="_employer_team_members_repeat" data-confirm="" class="dashicons-before dashicons-no-alt cmb-remove-group-row" title="Remove Member"></button>-->
+							<!--			<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--			<h3 class="cmb-group-title cmbhandle-title"><span>Member 1</span></h3>-->
+
+							<!--			<div class="inside cmb-td cmb-nested cmb-field-list"><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-name cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_name">Name</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][name]" id="_employer_team_members_0_name" value="" data-hash='5vtcm3oet620'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-designation cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_designation">Designation</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][designation]" id="_employer_team_members_0_designation" value="" data-hash='kjvushud0qg0'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-experience cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_experience">Experience</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][experience]" id="_employer_team_members_0_experience" value="" data-hash='1p3uod5f8810'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id&#45;&#45;employer-team-members-0-profile-image cmb-repeat-group-field" data-fieldtype="wp_job_board_pro_file">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_profile_image">Profile Image</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--		<div class="wp-job-board-pro-uploaded-files">-->
+							<!--					</div>-->
+
+
+							<!--		<input type="file" class="hidden wp-job-board-pro-file-upload" data-file_types="gif|jpeg|jpg|png" data-mime_types=""  name="_employer_team_members[0][profile_image]" data-file_limit="10" data-file_size="5"/>-->
+
+							<!--		<div class="label-can-drag">-->
+							<!--			<div class="form-group group-upload">-->
+							<!--		        <div class="upload-file-btn">-->
+							<!--	            	<span>Browse</span>-->
+							<!--		        </div>-->
+							<!--		    </div>-->
+							<!--		</div>-->
+
+
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-facebook cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_facebook">Facebook URL</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][facebook]" id="_employer_team_members_0_facebook" value="" data-hash='1324l74qm9s0'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-twitter cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_twitter">Twitter URL</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][twitter]" id="_employer_team_members_0_twitter" value="" data-hash='39nvfmehg7a0'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-google-plus cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_google_plus">Google Plus URL</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][google_plus]" id="_employer_team_members_0_google_plus" value="" data-hash='106jqd9nh8oo'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-linkedin cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_linkedin">Linkedin URL</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][linkedin]" id="_employer_team_members_0_linkedin" value="" data-hash='5bu7omahtt20'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-team-members-0-dribbble cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_dribbble">Dribbble URL</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_team_members[0][dribbble]" id="_employer_team_members_0_dribbble" value="" data-hash='6gmeb3fuoiu0'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-textarea cmb2-id&#45;&#45;employer-team-members-0-description cmb-repeat-group-field" data-fieldtype="textarea">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_team_members_0_description">Description</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<textarea class="cmb2_textarea" name="_employer_team_members[0][description]" id="_employer_team_members_0_description" cols="60" rows="10" data-hash='32ouut5ansh0'></textarea>-->
+							<!--	</div>-->
+							<!--</div>-->
+							<!--					<div class="cmb-row cmb-remove-field-row">-->
+							<!--						<div class="cmb-remove-row">-->
+							<!--							<button type="button" data-selector="_employer_team_members_repeat" data-confirm="" class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove Member</button>-->
+							<!--						</div>-->
+							<!--					</div>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+
+							<!--                    -->
+							<!--		<div class="cmb-row"><div class="cmb-td"><p class="cmb-add-row"><button type="button" data-selector="_employer_team_members_repeat" data-grouptitle="Member {#}" class="cmb-add-group-row button-secondary">Add Another Member</button></p></div></div></div></div></div><div class="cmb-row cmb-type-user-ajax-search cmb2-id&#45;&#45;employer-employees" data-fieldtype="user_ajax_search">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_employees">Employees</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<ul id="_employer_employees_results" class="cmb-ajax-search-results cmb-user-ajax-search-results"></ul><input type="text" class="cmb-ajax-search cmb-user-ajax-search" name="_employer_employees_input" id="_employer_employees_input" value="" data-multiple='1' data-limit='-1' data-sortable='0' data-object-type='user' data-query-args='{&quot;role&quot;:[&quot;wp_job_board_pro_employee&quot;],&quot;search_columns&quot;:[&quot;user_login&quot;,&quot;user_email&quot;],&quot;meta_query&quot;:{&quot;relation&quot;:&quot;OR&quot;,&quot;0&quot;:{&quot;key&quot;:&quot;employee_employer_id&quot;,&quot;value&quot;:&quot;&quot;},&quot;1&quot;:{&quot;key&quot;:&quot;employee_employer_id&quot;,&quot;compare&quot;:&quot;NOT EXISTS&quot;}}}' data-hash='5bgmgip8t6u0'/><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-admin/images/spinner.gif" class="cmb-ajax-search-spinner" />-->
+							<!--	</div>-->
+							<!--</div></div></div><div id="heading-custom-heading-23880541" class="before-group-row before-group-row-3  columns-1"><div class="before-group-row-inner"><div class="cmb-row cmb-type-title cmb2-id-custom-heading-23880541" data-fieldtype="title">-->
+
+							<!--	<div class="cmb-td">-->
+							<!--<h5  class="cmb2-metabox-title" id="custom-heading-23880541" data-hash='1hkc30kq1l5o'>Social Network</h5>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-repeat-group-wrap cmb-type-group cmb2-id&#45;&#45;employer-socials cmb-repeat" data-fieldtype="group"><div class="cmb-td"><div data-groupid="_employer_socials" id="_employer_socials_repeat"  class="cmb-nested cmb-field-list cmb-repeatable-group non-sortable repeatable" style="width:100%;"><div class="cmb-row"><div class="cmb-th"><h2 class="cmb-group-name">Socials</h2></div></div>-->
+							<!--		<div id="cmb-group-_employer_socials-0" class="postbox cmb-row cmb-repeatable-grouping closed" data-iterator="0"><button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="dashicons-before dashicons-no-alt cmb-remove-group-row" title="Remove Network"></button>-->
+							<!--			<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--			<h3 class="cmb-group-title cmbhandle-title"><span>Network 1</span></h3>-->
+
+							<!--			<div class="inside cmb-td cmb-nested cmb-field-list"><div class="cmb-row cmb-type-select cmb2-id&#45;&#45;employer-socials-0-network cmb-repeat-group-field" data-fieldtype="select">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_0_network">Network</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<select class="cmb2_select" name="_employer_socials[0][network]" id="_employer_socials_0_network" data-hash='59j2b2bb2c10'>	<option value="facebook"  selected='selected'>Facebook</option>-->
+							<!--	<option value="twitter" >Twitter</option>-->
+							<!--	<option value="linkedin" >Linkedin</option>-->
+							<!--	<option value="dribbble" >Dribbble</option>-->
+							<!--	<option value="tumblr" >Tumblr</option>-->
+							<!--	<option value="pinterest" >Pinterest</option>-->
+							<!--	<option value="instagram" >Instagram</option>-->
+							<!--	<option value="youtube" >Youtube</option>-->
+							<!--	<option value="tiktok" >Tiktok</option>-->
+							<!--	<option value="telegram" >Telegram</option>-->
+							<!--	<option value="discord" >Discord</option>-->
+							<!--</select>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-socials-0-url cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_0_url">Url</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_socials[0][url]" id="_employer_socials_0_url" value="#" data-hash='32d6119ucsc0'/>-->
+							<!--	</div>-->
+							<!--</div>-->
+							<!--					<div class="cmb-row cmb-remove-field-row">-->
+							<!--						<div class="cmb-remove-row">-->
+							<!--							<button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove Network</button>-->
+							<!--						</div>-->
+							<!--					</div>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+
+							<!--		<div id="cmb-group-_employer_socials-1" class="postbox cmb-row cmb-repeatable-grouping closed" data-iterator="1"><button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="dashicons-before dashicons-no-alt cmb-remove-group-row" title="Remove Network"></button>-->
+							<!--			<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--			<h3 class="cmb-group-title cmbhandle-title"><span>Network 2</span></h3>-->
+
+							<!--			<div class="inside cmb-td cmb-nested cmb-field-list"><div class="cmb-row cmb-type-select cmb2-id&#45;&#45;employer-socials-1-network cmb-repeat-group-field" data-fieldtype="select">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_1_network">Network</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<select class="cmb2_select" name="_employer_socials[1][network]" id="_employer_socials_1_network" data-hash='2i994937b580'>	<option value="facebook" >Facebook</option>-->
+							<!--	<option value="twitter"  selected='selected'>Twitter</option>-->
+							<!--	<option value="linkedin" >Linkedin</option>-->
+							<!--	<option value="dribbble" >Dribbble</option>-->
+							<!--	<option value="tumblr" >Tumblr</option>-->
+							<!--	<option value="pinterest" >Pinterest</option>-->
+							<!--	<option value="instagram" >Instagram</option>-->
+							<!--	<option value="youtube" >Youtube</option>-->
+							<!--	<option value="tiktok" >Tiktok</option>-->
+							<!--	<option value="telegram" >Telegram</option>-->
+							<!--	<option value="discord" >Discord</option>-->
+							<!--</select>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-socials-1-url cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_1_url">Url</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_socials[1][url]" id="_employer_socials_1_url" value="#" data-hash='1dg4imd1hoog'/>-->
+							<!--	</div>-->
+							<!--</div>-->
+							<!--					<div class="cmb-row cmb-remove-field-row">-->
+							<!--						<div class="cmb-remove-row">-->
+							<!--							<button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove Network</button>-->
+							<!--						</div>-->
+							<!--					</div>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+
+							<!--		<div id="cmb-group-_employer_socials-2" class="postbox cmb-row cmb-repeatable-grouping closed" data-iterator="2"><button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="dashicons-before dashicons-no-alt cmb-remove-group-row" title="Remove Network"></button>-->
+							<!--			<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--			<h3 class="cmb-group-title cmbhandle-title"><span>Network 3</span></h3>-->
+
+							<!--			<div class="inside cmb-td cmb-nested cmb-field-list"><div class="cmb-row cmb-type-select cmb2-id&#45;&#45;employer-socials-2-network cmb-repeat-group-field" data-fieldtype="select">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_2_network">Network</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<select class="cmb2_select" name="_employer_socials[2][network]" id="_employer_socials_2_network" data-hash='avu8ab3j17o0'>	<option value="facebook" >Facebook</option>-->
+							<!--	<option value="twitter" >Twitter</option>-->
+							<!--	<option value="linkedin"  selected='selected'>Linkedin</option>-->
+							<!--	<option value="dribbble" >Dribbble</option>-->
+							<!--	<option value="tumblr" >Tumblr</option>-->
+							<!--	<option value="pinterest" >Pinterest</option>-->
+							<!--	<option value="instagram" >Instagram</option>-->
+							<!--	<option value="youtube" >Youtube</option>-->
+							<!--	<option value="tiktok" >Tiktok</option>-->
+							<!--	<option value="telegram" >Telegram</option>-->
+							<!--	<option value="discord" >Discord</option>-->
+							<!--</select>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-socials-2-url cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_2_url">Url</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_socials[2][url]" id="_employer_socials_2_url" value="#" data-hash='7941e21hrgc0'/>-->
+							<!--	</div>-->
+							<!--</div>-->
+							<!--					<div class="cmb-row cmb-remove-field-row">-->
+							<!--						<div class="cmb-remove-row">-->
+							<!--							<button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove Network</button>-->
+							<!--						</div>-->
+							<!--					</div>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+
+							<!--		<div id="cmb-group-_employer_socials-3" class="postbox cmb-row cmb-repeatable-grouping closed" data-iterator="3"><button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="dashicons-before dashicons-no-alt cmb-remove-group-row" title="Remove Network"></button>-->
+							<!--			<div class="cmbhandle" title="Click to toggle"><br></div>-->
+							<!--			<h3 class="cmb-group-title cmbhandle-title"><span>Network 4</span></h3>-->
+
+							<!--			<div class="inside cmb-td cmb-nested cmb-field-list"><div class="cmb-row cmb-type-select cmb2-id&#45;&#45;employer-socials-3-network cmb-repeat-group-field" data-fieldtype="select">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_3_network">Network</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<select class="cmb2_select" name="_employer_socials[3][network]" id="_employer_socials_3_network" data-hash='3205bb4oa2d0'>	<option value="facebook" >Facebook</option>-->
+							<!--	<option value="twitter" >Twitter</option>-->
+							<!--	<option value="linkedin" >Linkedin</option>-->
+							<!--	<option value="dribbble" >Dribbble</option>-->
+							<!--	<option value="tumblr" >Tumblr</option>-->
+							<!--	<option value="pinterest" >Pinterest</option>-->
+							<!--	<option value="instagram"  selected='selected'>Instagram</option>-->
+							<!--	<option value="youtube" >Youtube</option>-->
+							<!--	<option value="tiktok" >Tiktok</option>-->
+							<!--	<option value="telegram" >Telegram</option>-->
+							<!--	<option value="discord" >Discord</option>-->
+							<!--</select>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-socials-3-url cmb-repeat-group-field table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_socials_3_url">Url</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_socials[3][url]" id="_employer_socials_3_url" value="#" data-hash='q2umjqsrd540'/>-->
+							<!--	</div>-->
+							<!--</div>-->
+							<!--					<div class="cmb-row cmb-remove-field-row">-->
+							<!--						<div class="cmb-remove-row">-->
+							<!--							<button type="button" data-selector="_employer_socials_repeat" data-confirm="" class="cmb-remove-group-row cmb-remove-group-row-button alignright button-secondary">Remove Network</button>-->
+							<!--						</div>-->
+							<!--					</div>-->
+
+							<!--			</div>-->
+							<!--		</div>-->
+							<!--		<div class="cmb-row"><div class="cmb-td"><p class="cmb-add-row"><button type="button" data-selector="_employer_socials_repeat" data-grouptitle="Network {#}" class="cmb-add-group-row button-secondary">Add Another Network</button></p></div></div></div></div></div></div></div><div id="heading-custom-heading-24422422" class="before-group-row before-group-row-4  columns-1"><div class="before-group-row-inner"><div class="cmb-row cmb-type-title cmb2-id-custom-heading-24422422" data-fieldtype="title">-->
+
+							<!--	<div class="cmb-td">-->
+							<!--<h5  class="cmb2-metabox-title" id="custom-heading-24422422" data-hash='4t5puk3ck0k0'>Contact Information</h5>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-pw-taxonomy-select-search cmb2-id&#45;&#45;employer-location" data-fieldtype="pw_taxonomy_select_search">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_location">Location</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<select class="pw_taxonomy_select2_search pw_taxonomy_select_search" name="_employer_location" id="_employer_location" data-placeholder='Select %s' data-taxonomy='employer_location' data-hash='6sr24df4fh20' placeholder="Select %s">	<option value="72"  selected='selected'>New York</option>-->
+							<!--</select>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-text cmb2-id&#45;&#45;employer-address table-layout" data-fieldtype="text">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_address">Friendly Address</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<input type="text" class="regular-text" name="_employer_address" id="_employer_address" value="41 Ditmars Blvd, East Elmhurst, NY" data-hash='7hertbk2tc60'/>-->
+							<!--	</div>-->
+							<!--</div><div class="cmb-row cmb-type-pw-map cmb2-id&#45;&#45;employer-map-location" data-fieldtype="pw_map">-->
+							<!--<div class="cmb-th">-->
+							<!--<label for="_employer_map_location">Maps Location</label>-->
+							<!--</div>-->
+							<!--	<div class="cmb-td">-->
+							<!--<div class="pw-map-search-wrapper"><input type="text" class="large-text pw-map-search" name="_employer_map_location[address]" id="_employer_map_location2T6E1" value="104-45-104-41 Ditmars Blvd, East Elmhurst, NY" data-hash='36dpcm8j1o80'/><span class="find-me-location"></span></div><div id="_employer_map_location-map2T6E1" class="pw-map"></div><input type="text" class="pw-map-latitude" name="_employer_map_location[latitude]" id="_employer_map_location_latitude2T6E1" value="40.76710812133617" placeholder="Latitude" data-hash='36dpcm8j1o80'/><input type="text" class="pw-map-longitude" name="_employer_map_location[longitude]" id="_employer_map_location_longitude2T6E1" value="-73.86544865187471" placeholder="Longitude" data-hash='36dpcm8j1o80'/><div class="hidden pw-map-properties" data-name="_employer_map_location_properties"></div>-->
+							<!--	</div>-->
+							<!--</div></div></div></div></div><input type="hidden" class="cmb2-hidden" name="_employer_post_type" id="_employer_post_type" value="employer" data-hash='1bh076i24ia0'/>-->
+							<!-- End CMB2 Fields -->
+							<input type="submit" name="submit-cmb-profile" value="Save Profile" class="button-primary">
+				</form>
+			</div>
+		</div>
+
+	</div><!-- .site-main -->
+</div><!-- .content-area -->
+
+
+{% endblock %}

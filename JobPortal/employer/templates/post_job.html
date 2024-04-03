@@ -1,17 +1,506 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Sumbit</button>
-   </form>
+{% extends 'employer_base.html' %}
+{% block content %}
 
-   
-</body>
-</html>
+
+<div id="main-content" class="main-page col-md-8 col-sm-12 col-xs-12">
+    <div id="main" class="site-main clearfix" role="main">
+
+
+
+        <div class="job-submission-form-wrapper box-dashboard-wrapper">
+            <h3 class="title">Post a New Job</h3>
+            <div class="inner-list">
+
+
+                <form class="cmb-form" method="post" id="_job_front" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+                    <input type="hidden" name="job_id" value="0"><input type="hidden"
+                        name="wp_job_board_pro_job_submit_form" value="wp_job_board_pro_job_submit_form"><input
+                        type="hidden" name="submit_step" value="1"><input type="hidden" name="object_id" value="1694">
+
+                    <input type="hidden" id="nonce_CMB2php_job_front" name="nonce_CMB2php_job_front"
+                        value="9843ae3aa2" />
+                    <div class="cmb2-wrap form-table">
+                        <div id="cmb2-metabox-_job_front" class="cmb2-metabox cmb-field-list">
+                            <div id="heading-custom-heading-26715024"
+                                class="before-group-row before-group-row-0 active columns-2">
+                                <div class="before-group-row-inner">
+                                    <div class="cmb-row cmb-type-title cmb2-id-custom-heading-26715024"
+                                        data-fieldtype="title">
+
+                                        <div class="cmb-td">
+                                            <h5 class="cmb2-metabox-title" id="custom-heading-26715024"
+                                                data-hash='2doe232jh9d0'>Post Job</h5>
+                                        </div>
+                                    </div>
+                                    <div class="cmb-row cmb-type-wp-job-board-pro-file cmb2-id--job-featured-image"
+                                        data-fieldtype="wp_job_board_pro_file">
+                                        <div class="cmb-th">
+                                            <label for="_job_featured_image">Featured Image</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            <div class="wp-job-board-pro-uploaded-files"
+                                                style="width: 100px; height: 100px;">
+
+                                            </div>
+                                            <label for="file-upload" class="custom-file-upload">
+												<i class="bi bi-cloud-upload"></i> Choose File
+											</label>
+											<input id="file-upload" type="file" name="image" accept="image/*">
+
+											<style>
+												/* Hide the default file input */
+												input[type="file"] {
+													display: none;
+												}
+
+												/* Style the custom file upload button */
+												.custom-file-upload {
+													background-color: #007bff;
+													/* Example background color */
+													color: #fff;
+													/* Example text color */
+													padding: 8px 12px;
+													/* Example padding */
+													border-radius: 4px;
+													/* Example border radius */
+													cursor: pointer;
+													/* Show pointer cursor on hover */
+													display: inline-block;
+													/* Make it behave like a button */
+													margin-top: 30px;
+													margin-left: 10px;
+												}
+
+												/* Optional: Style the icon */
+												.custom-file-upload i {
+													margin-right: 8px;
+													/* Example margin */
+												}
+											</style>
+
+
+
+
+
+                                            <!--                                                                <input type="file"-->
+                                            <!--                                                                    class="hidden wp-job-board-pro-file-upload"-->
+                                            <!--                                                                    data-file_types="gif|jpg|jpeg|jpe|png"-->
+                                            <!--                                                                    data-mime_types="image/gif|image/jpeg|image/png"-->
+                                            <!--                                                                    name="image" data-file_limit="5"-->
+                                            <!--                                                                    data-file_size="5" />-->
+
+                                            <!--                                                                <div class="label-can-drag">-->
+                                            <!--                                                                    <div class="form-group group-upload">-->
+                                            <!--                                                                        <div class="upload-file-btn">-->
+                                            <!--                                                                             -->
+
+                                            <!--&lt;!&ndash;                                                                            <span></span>&ndash;&gt;-->
+                                            <!--                                                                        </div>-->
+                                            <!--                                                                    </div>-->
+                                            <!--                                                                </div>-->
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="cmb-row cmb-type-text cmb2-id--job-title table-layout"
+                                        data-fieldtype="text">
+                                        <div class="cmb-th">Job Title <span class="required">*</span></div>
+                                        <div class="cmb-td">
+                                            <!-- <input type="text" class="regular-text" name="_job_title" id="_job_title" value="" data-hash='7k3mipl19nn0' required="required" /> -->
+
+                                            {{ form.job_title }}
+                                        </div>
+                                    </div>
+                                    <div class="cmb-row cmb-type-textarea cmb2-id--job-description"
+                                        data-fieldtype="textarea">
+                                        <div class="cmb-th">Job Description <span class="required">*</span></div>
+                                        <div class="cmb-td">
+                                            <!-- <textarea class="cmb2_textarea" name="_job_description" id="_job_description" cols="60" rows="10" data-hash='6v3pn0gha020' required="required"></textarea> -->
+                                            {{ form.description }}
+
+                                        </div>
+                                    </div>
+                                    <div class="cmb-row cmb-type-pw-taxonomy-select cmb2-id--job-category"
+                                        data-fieldtype="pw_taxonomy_select">
+                                        <div class="cmb-th">
+                                            <label for="_job_category">Category</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            {{ form.category }}
+                                            <!--                                                                <select class="pw_taxonomy_select2 pw_taxonomy_select"-->
+                                            <!--                                                                    name="_job_category" id="_job_category"-->
+                                            <!--                                                                    data-placeholder='' data-hash='12qe6rf11778'>-->
+                                            <!--                                                                    <option value="44">Accounting / Finance</option>-->
+                                            <!--                                                                    <option value="106">Automotive Jobs</option>-->
+                                            <!--                                                                    <option value="46">Customer</option>-->
+                                            <!--                                                                    <option value="48">Design</option>-->
+                                            <!--                                                                    <option value="47">Development</option>-->
+                                            <!--                                                                    <option value="45">Health and Care</option>-->
+                                            <!--                                                                    <option value="104">Human Resource</option>-->
+                                            <!--                                                                    <option value="105">Marketing</option>-->
+                                            <!--                                                                    <option value="107">Project Management</option>-->
+<!--                                            </select>-->
+                                        </div>
+                                    </div>
+                                    <div class="cmb-row cmb-type-pw-taxonomy-select cmb2-id--job-type"
+                                        data-fieldtype="pw_taxonomy_select">
+                                        <div class="cmb-th">
+                                            <label for="_job_type">Type</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            {{ form.employment_type }}
+                                            <!--                                                                <select class="pw_taxonomy_select2 pw_taxonomy_select"-->
+                                            <!--                                                                    name="_job_type" id="_job_type" data-placeholder='' value=""-->
+                                            <!--                                                                    data-hash='586esoo0mbv0' -->
+                                            <!--                                                                    -->
+                                            <!--                                                                    -->
+
+                                            <!--                                                                </select>-->
+                                        </div>
+                                    </div>
+                                    <!--                                                        <div class="cmb-row cmb-type-wp-job-board-pro-tags cmb2-id&#45;&#45;job-tag"-->
+                                    <!--                                                            data-fieldtype="wp_job_board_pro_tags">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_tag">Tag</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <input type="text" class="regular-text" name="_job_tag"-->
+                                    <!--                                                                    id="_job_tag" value="" data-hash='6bc7p1dp3000' />-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <div class="cmb-row cmb-type-pw-select cmb2-id--job-gender"
+                                        data-fieldtype="pw_select">
+                                        <div class="cmb-th">
+                                            <label for="_job_gender">Gender Required</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            {{ form.gender }}
+                                            <!--                                                                <select class="pw_select2 pw_select" name="_job_gender"-->
+                                            <!--                                                                    id="_job_gender" data-placeholder=''-->
+                                            <!--                                                                    data-hash='2v6gnnskajeg' data-allowclear='1'-->
+                                            <!--                                                                    data-width='100%' >-->
+                                            <!--&lt;!&ndash;                                                                    <option value="Both">Both</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                                                    <option value="Female">Female</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                                                    <option value="Male">Male</option>&ndash;&gt;-->
+                                            <!--                                                                </select>-->
+                                        </div>
+                                    </div>
+                                    <!--                                                        <div class="cmb-row cmb-type-pw-select cmb2-id&#45;&#45;job-apply-type"-->
+                                    <!--                                                            data-fieldtype="pw_select">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_apply_type">Job Apply Type</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <select class="pw_select2 pw_select"-->
+                                    <!--                                                                    name="_job_apply_type" id="_job_apply_type"-->
+                                    <!--                                                                    data-placeholder='' data-hash='3988cm7vf4gg'-->
+                                    <!--                                                                    data-allowclear='1' data-width='100%'>-->
+                                    <!--                                                                    <option></option>-->
+                                    <!--                                                                    <option value="internal">Internal</option>-->
+                                    <!--                                                                    <option value="external">External URL</option>-->
+                                    <!--                                                                    <option value="with_email">By Email</option>-->
+                                    <!--                                                                    <option value="call">Call To Apply</option>-->
+                                    <!--                                                                </select>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                        <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;job-apply-url table-layout"-->
+                                    <!--                                                            data-fieldtype="text">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_apply_url">External URL for Apply-->
+                                    <!--                                                                    Job</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <input type="text" class="regular-text"-->
+                                    <!--                                                                    name="_job_apply_url" id="_job_apply_url" value=""-->
+                                    <!--                                                                    data-hash='2g83k6gslceg' />-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                        <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;job-apply-email table-layout"-->
+                                    <!--                                                            data-fieldtype="text">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_apply_email">Job Apply Email</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <input type="text" class="regular-text"-->
+                                    <!--                                                                    name="_job_apply_email" id="_job_apply_email"-->
+                                    <!--                                                                    value="" data-hash='4s567ps404p0' />-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                        <div class="cmb-row cmb-type-pw-select cmb2-id&#45;&#45;job-salary-type"-->
+                                    <!--                                                            data-fieldtype="pw_select">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_salary_type">Salary Type</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <select class="pw_select2 pw_select"-->
+                                    <!--                                                                    name="_job_salary_type" id="_job_salary_type"-->
+                                    <!--                                                                    data-placeholder='' data-hash='40a7vgcrnr20'-->
+                                    <!--                                                                    data-allowclear='1' data-width='100%'>-->
+                                    <!--                                                                    <option></option>-->
+                                    <!--                                                                    <option value="monthly">Monthly</option>-->
+                                    <!--                                                                    <option value="weekly">Weekly</option>-->
+                                    <!--                                                                    <option value="daily">Daily</option>-->
+                                    <!--                                                                    <option value="hourly">Hourly</option>-->
+                                    <!--                                                                    <option value="yearly">Yearly</option>-->
+                                    <!--                                                                </select>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <div class="cmb-row cmb-type-text cmb2-id--job-salary table-layout"
+                                        data-fieldtype="text">
+                                        <div class="cmb-th">
+                                            <label for="_job_salary"> Salary</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            <!--                                                                <input type="text" class="regular-text"-->
+                                            <!--                                                                    name="_job_salary" id="_job_salary" value=""-->
+                                            <!--                                                                    data-hash='10310380c1uo' />-->
+                                            {{ form.salary }}
+                                        </div>
+                                    </div>
+
+                                    <div class="cmb-row cmb-type-text cmb2-id--job-salary table-layout"
+                                        data-fieldtype="text">
+                                        <div class="cmb-th">
+                                            <label for="_job_salary"> Number of Post </label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            <!--                                                                <input type="text" class="regular-text"-->
+                                            <!--                                                                    name="_job_salary" id="_job_salary" value=""-->
+                                            <!--                                                                    data-hash='10310380c1uo' />-->
+                                            {{ form.post_no }}
+                                        </div>
+                                    </div>
+                                    <!--
+<!--                                                        <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;job-max-salary table-layout"-->
+                                    <!--                                                            data-fieldtype="text">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_max_salary">Max. Salary</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <input type="text" class="regular-text"-->
+                                    <!--                                                                    name="_job_max_salary" id="_job_max_salary" value=""-->
+                                    <!--                                                                    data-hash='7d1ldt9npm20' />-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <div class="cmb-row cmb-type-pw-select cmb2-id--job-experience"
+                                        data-fieldtype="pw_select">
+                                        <div class="cmb-th">
+                                            <label for="_job_experience">Experience</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            {{ form.experience }}
+                                            <!--                                                                <select class="pw_select2 pw_select"-->
+                                            <!--                                                                    name="_job_experience" id="_job_experience"-->
+                                            <!--                                                                    data-placeholder='' data-hash='6ab32lu535f0'-->
+                                            <!--                                                                    data-allowclear='1' data-width='100%' {{form.experience}}>-->
+
+                                            <!--                                                                </select>-->
+                                        </div>
+                                    </div>
+                                    <!--                                                        <div class="cmb-row cmb-type-pw-select cmb2-id&#45;&#45;job-career-level"-->
+                                    <!--                                                            data-fieldtype="pw_select">-->
+                                    <!--                                                            <div class="cmb-th">-->
+                                    <!--                                                                <label for="_job_career_level">Career Level</label>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                            <div class="cmb-td">-->
+                                    <!--                                                                <select class="pw_select2 pw_select"-->
+                                    <!--                                                                    name="_job_career_level" id="_job_career_level"-->
+                                    <!--                                                                    data-placeholder='' data-hash='7mghv55jfk90'-->
+                                    <!--                                                                    data-allowclear='1' data-width='100%'>-->
+                                    <!--                                                                    <option></option>-->
+                                    <!--                                                                    <option value="Manager">Manager</option>-->
+                                    <!--                                                                    <option value="Officer">Officer</option>-->
+                                    <!--                                                                    <option value="Student">Student</option>-->
+                                    <!--                                                                    <option value="Executive">Executive</option>-->
+                                    <!--                                                                    <option value="Others">Others</option>-->
+                                    <!--                                                                </select>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <div class="cmb-row cmb-type-pw-select cmb2-id--job-qualification"
+                                        data-fieldtype="pw_select">
+                                        <div class="cmb-th">
+                                            <label for="_job_qualification">Qualification</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            <select class="pw_select2 pw_select" name="_job_qualification"
+                                                id="_job_qualification" data-placeholder='' data-hash='51v2o997p590'
+                                                data-allowclear='1' data-width='100%'>
+                                                <option></option>
+                                                <option value="Certificate">Certificate</option>
+                                                <option value="Associate Degree">Associate Degree
+                                                </option>
+                                                <option value="Bachelor Degree">Bachelor Degree
+                                                </option>
+                                                <option value="Master’s Degree">Master’s Degree
+                                                </option>
+                                                <option value="Doctorate Degree">Doctorate Degree
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="cmb-row cmb-type-text cmb2-id--job-salary table-layout"
+                                        data-fieldtype="text">
+                                        <div class="cmb-th">
+                                            <label for="_job_salary"> Location</label>
+                                        </div>
+                                        <div class="cmb-td">
+                                            {{form.location}}
+                                        </div>
+                                    </div>
+
+
+
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+                                    <script>
+                                        $(document).ready(function () {
+                                            // Initialize datepicker
+                                            $("#_job_application_deadline_date_display").datepicker({
+                                                dateFormat: "MM d, yy",
+                                                altField: "#_job_application_deadline_date",
+                                                altFormat: "yy-mm-dd",
+                                                minDate: 0
+                                            });
+                                        });
+                                    </script>
+
+
+
+                                    <div class="cmb-row cmb-type-text cmb2-id--job-salary table-layout"
+                                        data-fieldtype="text">
+                                        <div class="cmb-th">
+                                            <!--                                                                <label for="_job_salary"> Application </label>-->
+                                            <label for="_job_application_deadline_date">Application Deadline
+                                                Date</label>
+
+                                        </div>
+                                        <div class="cmb-td">
+                                            <input type="text" required class="wjbp-datepicker cmb2-datepicker"
+                                                name="expairy_date" id="_job_application_deadline_date_display" value=""
+                                                data-datepicker='{"dateFormat":"MM d, yy","altField":"#_job_application_deadline_date","altFormat":"yy-mm-dd","minDate":0}'
+                                                data-hash='ggbklg1ekr80' />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <!--                                                        <div class="cmb-row cmb-type-wjbp-datepicker cmb2-id&#45;&#45;job-application-deadline-date"-->
+                                <!--                                                            data-fieldtype="wjbp_datepicker">-->
+                                <!--                                                            <div class="cmb-th">-->
+                                <!--                                                                <label for="_job_application_deadline_date">Application-->
+                                <!--                                                                    Deadline Date</label>-->
+                                <!--                                                            </div>-->
+                                <!--                                                            <div class="cmb-td">-->
+                                <!--                                                                <input type="text"-->
+                                <!--                                                                    class="wjbp-datepicker cmb2-datepicker"-->
+                                <!--                                                                    name="_job_application_deadline_date_display"-->
+                                <!--                                                                    id="_job_application_deadline_date_display" value=""-->
+                                <!--                                                                    data-datepicker='{"dateFormat":"MM d, yy","altField":"#_job_application_deadline_date","altFormat":"yy-mm-dd"}'-->
+                                <!--                                                                    data-hash='ggbklg1ekr80' /><input type="hidden"-->
+                                <!--                                                                    class="regular-text"-->
+                                <!--                                                                    name="_job_application_deadline_date"-->
+                                <!--                                                                    id="_job_application_deadline_date" value=""-->
+                                <!--                                                                    data-hash='ggbklg1ekr80'-->
+                                <!--                                                                    data-datepicker='{"dateFormat":"MM d, yy","altField":"#_job_application_deadline_date","altFormat":"yy-mm-dd"}' />-->
+                                <!--                                                            </div>-->
+                                <!--                                                        </div>-->
+                                <!--                                                        <div class="cmb-row cmb-type-text cmb2-id&#45;&#45;job-address table-layout"-->
+                                <!--                                                            data-fieldtype="text">-->
+                                <!--                                                            <div class="cmb-th">-->
+                                <!--                                                                <label for="_job_address">Friendly Address</label>-->
+                                <!--                                                            </div>-->
+                                <!--                                                            <div class="cmb-td">-->
+                                <!--                                                                <input type="text" class="regular-text"-->
+                                <!--                                                                    name="_job_address" id="_job_address" value=""-->
+                                <!--                                                                    data-hash='2q7cm5htb6b0' />-->
+                                <!--                                                            </div>-->
+                                <!--                                                        </div>-->
+                                <!--                                                        <div class="cmb-row cmb-type-pw-taxonomy-select-search cmb2-id&#45;&#45;job-location"-->
+                                <!--                                                            data-fieldtype="pw_taxonomy_select_search">-->
+                                <!--                                                            <div class="cmb-th">-->
+                                <!--                                                                <label for="_job_location">Location</label>-->
+                                <!--                                                            </div>-->
+                                <!--                                                            <div class="cmb-td">-->
+                                <!--                                                                <select-->
+                                <!--                                                                    class="pw_taxonomy_select2_search pw_taxonomy_select_search"-->
+                                <!--                                                                    name="_job_location" id="_job_location"-->
+                                <!--                                                                    data-placeholder=''-->
+                                <!--                                                                    data-taxonomy='job_listing_location'-->
+                                <!--                                                                    data-hash='6cfg2oidn2e0'></select>-->
+                                <!--                                                            </div>-->
+                                <!--                                                        </div>-->
+                                <!--                                                        <div class="cmb-row cmb-type-pw-map cmb2-id&#45;&#45;job-map-location"-->
+                                <!--                                                            data-fieldtype="pw_map">-->
+                                <!--                                                            <div class="cmb-th">-->
+                                <!--                                                                <label for="_job_map_location">Maps Location</label>-->
+                                <!--                                                            </div>-->
+                                <!--                                                            <div class="cmb-td">-->
+                                <!--                                                                <div class="pw-map-search-wrapper"><input type="text"-->
+                                <!--                                                                        class="large-text pw-map-search"-->
+                                <!--                                                                        name="_job_map_location[address]"-->
+                                <!--                                                                        id="_job_map_locationBwx3N" value=""-->
+                                <!--                                                                        data-hash='3okn29qk5h8g' /><span-->
+                                <!--                                                                        class="find-me-location"></span></div>-->
+                                <!--                                                                <div id="_job_map_location-mapBwx3N" class="pw-map">-->
+                                <!--                                                                </div><input type="text" class="pw-map-latitude"-->
+                                <!--                                                                    name="_job_map_location[latitude]"-->
+                                <!--                                                                    id="_job_map_location_latitudeBwx3N" value=""-->
+                                <!--                                                                    placeholder="Latitude"-->
+                                <!--                                                                    data-hash='3okn29qk5h8g' /><input type="text"-->
+                                <!--                                                                    class="pw-map-longitude"-->
+                                <!--                                                                    name="_job_map_location[longitude]"-->
+                                <!--                                                                    id="_job_map_location_longitudeBwx3N" value=""-->
+                                <!--                                                                    placeholder="Longitude" data-hash='3okn29qk5h8g' />-->
+                                <!--                                                                <div class="hidden pw-map-properties"-->
+                                <!--                                                                    data-name="_job_map_location_properties"></div>-->
+                                <!--                                                            </div>-->
+                                <!--                                                        </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-button-wrapper">
+                        <button type="submit" name="submit-cmb-job_listing" value="Save &amp; Preview"
+                            class="btn btn-theme btn-inverse border-2">Save &amp; Preview</button>
+                    </div>
+                </form>
+                <!--                                        </div><input type="hidden" class="cmb2-hidden" name="_job_post_type"-->
+                <!--                                            id="_job_post_type" value="job_listing" data-hash='5m1tada4m3m0' />-->
+                <!--                                        &lt;!&ndash; End CMB2 Fields &ndash;&gt;-->
+
+                <!--                                        -->
+                <!--                                    </form>-->
+            </div>
+        </div>
+    </div>
+    <!-- .site-main -->
+</div>
+
+
+
+{% endblock %}

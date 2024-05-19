@@ -4260,21 +4260,21 @@
 <!--                                                        data-candidate_id="4549" data-nonce="4385024ff7"><span-->
 <!--                                                            class="text hidden">Shortlist</span><i-->
 <!--                                                            class="flaticon-bookmark"></i></a>-->
-                                                  <a href="{% url 'apply_status' pk=1 apply_id=candidate.id  %}"
-                                                        class="btn btn-invite-candidate btn-theme"
-                                                        data-msg="">Pending</a>
+<!--                                                  <a href="{% url 'apply_status' pk=1 apply_id=candidate.id  %}"-->
+<!--                                                        class="btn btn-invite-candidate btn-theme"-->
+<!--                                                        data-msg="">Pending</a>-->
+                                                    <a href="{% url 'apply_status' pk=1 apply_id=apply_id  %}">Pending</a>
 
-                                                  <a href="{% url 'apply_status' pk=2  apply_id=candidate.id %}"
-                                                        class="btn btn-invite-candidate btn-theme"
-                                                        data-msg="">Shortlist</a>
+                                                  <a href="{% url 'apply_status' pk=2  apply_id=apply_id %}"
+                                                        >Shortlist</a>
 
-                                                 <a href="{% url 'apply_status' pk=3 apply_id=candidate.id  %}"
-                                                        class="btn btn-invite-candidate btn-theme"
-                                                        data-msg="">Approved</a>
+                                                 <a href="{% url 'apply_status' pk=3 apply_id=apply_id  %}"
+                                                        >Approved</a>
 
-                                                  <a href="{% url 'apply_status' pk=4 apply_id=candidate.id  %}"
-                                                        class="btn btn-invite-candidate btn-theme"
-                                                        data-msg="">Reject</a>
+
+
+                                                  <a href="{% url 'apply_status' pk=4 apply_id=apply_id  %}"
+                                                       >Reject</a>
 
                                                     <div id="invite-candidate-form-wrapper-4549"
                                                         class="invite-candidate-form-wrapper mfp-hide">

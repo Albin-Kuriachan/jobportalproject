@@ -41,9 +41,17 @@
 													style="width:100px;height:100px;">
 													<!-- <span class="wp-job-board-pro-uploaded-file-preview"><img decoding="async" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/member4.jpg" /> <a class="wp-job-board-pro-remove-uploaded-file" href="#">[remove]</a></span> -->
 													<span class="wp-job-board-pro-uploaded-file-preview"
-														style="width:100px;height:100px;"><img decoding="async"
-															name=image src="{{candidate.image.url}}"
-															style="height: 100px;width: 100px;" />
+														style="width:100px;height:100px;">
+
+														{% if candidate.image %}
+    <img decoding="async" name="image" src="{{ candidate.image.url }}" style="height: 100px; width: 100px;" />
+{% else %}
+    <!-- Show default image here -->
+    <img width="100" height="100" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/member4.jpg" class="attachment-thumbnail size-thumbnail unveil-image" alt="">
+{% endif %}
+
+
+
 														<!--														<a class="wp-job-board-pro-remove-uploaded-file"-->
 														<!--															href="#">[remove]</a>-->
 													</span>

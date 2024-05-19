@@ -24,6 +24,6 @@ class CandidateProfileAdmin(admin.ModelAdmin):
 
 
 class ApplyJobAdmin(admin.ModelAdmin):
-    list_display = ('candidate', 'job')  # Display fields in the list view
+    list_display = ('candidate', 'job')
 
 admin.site.register(ApplyJob, ApplyJobAdmin)

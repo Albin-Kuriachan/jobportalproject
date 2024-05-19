@@ -80,7 +80,7 @@
 											<div class="candidate-info-content">
 												<div class="title-wrapper flex-middle-sm">
 													<h2 class="candidate-title">
-														<a href="{% url 'apply_candidate_profile'  pk=apply_job.candidate.id %}"
+														<a href="{% url 'apply_candidate_profile'  pk=apply_job.candidate.id apply_id=apply_job.id %}"
 															rel="bookmark">{{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}
 </a>
 													</h2>

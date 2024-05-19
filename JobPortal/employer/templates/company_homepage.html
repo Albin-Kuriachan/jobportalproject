@@ -108,7 +108,7 @@
                                                         <div class="candidate-info-content">
                                                             <div class="title-wrapper flex-middle-sm">
                                                                 <h2 class="candidate-title">
-                                                                    <a href="{% url 'apply_candidate_profile' pk=apply_job.candidate.id %}">{{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}</a>
+                                                                    <a href="{% url 'apply_candidate_profile' pk=apply_job.candidate.id  apply_id=apply_job.id %}">{{ apply_job.candidate.first_name }} {{ apply_job.candidate.last_name }}</a>
                                                                 </h2>
 
 <!--                                                                <span class="label label-info pending"></span> -->
@@ -128,7 +128,7 @@
 															</div>
                                                             <div class="job-metas">
                                                                 <h4 class="job-title">
-                                                                    <a href="https://apusthemes.com/wp-demo/superio/job/junior-graphic-designer-web/" class="text-theme">{{ apply_job.job.job_title }}</a>
+                                                                    <a href="{% url 'apply_candidate_profile' pk=apply_job.candidate.id apply_id=apply_job.id %}" class="text-theme">{{ apply_job.job.job_title }}</a>
                                                                 </h4>
                                                                 <div class="date">
                                                                     <i class="bi bi-calenda3r"></i> {{ apply_job.apply_date }} </div>

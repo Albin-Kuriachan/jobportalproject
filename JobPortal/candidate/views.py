@@ -62,7 +62,7 @@ def index(request):
     }
     return render(request, 'temp/index.html', context)
 
-
+@login_required
 def add_profile_data(request):
     candidate = CandidateProfile.objects.get(user=request.user)
     if request.method == 'POST':
@@ -75,7 +75,7 @@ def add_profile_data(request):
 
     return render(request, 'add_profile_data.html', {'form': form, 'cf': 'add_profile_data'})
 
-
+@login_required
 def add_education(request):
     candidate = CandidateProfile.objects.get(user=request.user)
     print("candadte user", candidate.user.id)
@@ -98,7 +98,7 @@ def display_education_added(request):
 
     return render(request, 'education\display_education_added.html', {'edu_data': edu_data})
 
-
+@login_required
 def edit_eduaction_data(request, edu_id):
     education_instance = get_object_or_404(QualificationData, id=edu_id)
 
@@ -112,12 +112,12 @@ def edit_eduaction_data(request, edu_id):
 
     return render(request, 'education\edit_eduaction_data.html', {'form': form})
 
-
+@login_required
 def delete_eduaction_data(request, edu_id):
     QualificationData.objects.filter(id=edu_id).delete()
     return redirect('display_education_added')
 
-
+@login_required
 def create_experience(request):
     if request.method == 'POST':
         form = ExperienceForm(request.POST)
@@ -128,14 +128,14 @@ def create_experience(request):
         form = ExperienceForm()
     return render(request, 'experience\experience_form.html', {'form': form})
 
-
+@login_required
 def display_experience(request):
     candidate = CandidateProfile.objects.get(user=request.user)
     exprience = Expriance.objects.filter(user=candidate)
 
     return render(request, 'experience\display_experience.html', {'exp_data': exprience})
 
-
+@login_required
 def edit_experience(request, exp_id):
     exprience_instance = get_object_or_404(QualificationData, id=exp_id)
 
@@ -149,19 +149,19 @@ def edit_experience(request, exp_id):
 
     return render(request, 'experience\edit_experience.html', {'form': form})
 
-
+@login_required
 def delete_experience(request, exp_id):
     Expriance.objects.filter(id=exp_id).delete()
     return redirect('display_experience')
 
 
-
+@login_required
 def display_job(request):
     jobdata = JobData.objects.all()
-    form = JobFilterForm()  # Instantiate the JobDataForm
+    form = JobFilterForm()
 
     if request.method == 'POST':
-        form = JobFilterForm(request.POST)  # Bind the form with the POST data
+        form = JobFilterForm(request.POST)
 
         if form.is_valid():
             job_title_pattern = form.cleaned_data['job_title']
@@ -225,7 +225,7 @@ def display_job(request):
     return render(request, "jobdata/display_job.html", context)
 
 
-
+@login_required
 def job_details(request, job_id):
     job_details = JobData.objects.filter(id=job_id)
     candidate = CandidateProfile.objects.get(user=request.user)
@@ -242,7 +242,7 @@ def job_details(request, job_id):
 
 
 
-
+@login_required
 def job_filter(request):
     job_listings = JobData.objects.all()
 
@@ -258,7 +258,7 @@ def job_filter(request):
 
     return render(request, "jobdata/job_filter.html", {'job_listings': job_listings})
 
-
+@login_required
 def apply_job(request, job_id):
     candidate = CandidateProfile.objects.get(user=request.user)
 
@@ -283,16 +283,16 @@ def apply_job(request, job_id):
 
     return redirect('job_details', job_id=job_id)
 
-
+@login_required
 def companyDisplay(request):
     company = CompanyData.objects.all()
     return render(request, 'company/companydisplay.html', {"company": company})
 
-
+@login_required
 def profileDetails(request):
     return render(request, 'profile\profofiledisplay.html')
 
-
+@login_required
 def profileDataAdd(request):
     candidate = CandidateProfile.objects.get(user=request.user)
 
@@ -319,7 +319,7 @@ def profileDataAdd(request):
 
     return render(request, 'profile\profileDataAdd.html', context)
 
-
+@login_required
 def myapplyed(request):
     candidate = CandidateProfile.objects.get(user=request.user)
     applydata = ApplyJob.objects.filter(candidate=candidate)

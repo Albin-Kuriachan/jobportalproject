@@ -297,9 +297,17 @@ def appliedCadidate(request):
 
 
 def apply_status(request, pk, apply_id):
-    job = ApplyJob.objects.get(id=apply_id)
+    print(apply_id)
 
-    # Determine the status based on the provided primary key
+    print(pk)
+
+    job = ApplyJob.objects.get(id=apply_id)
+    # jk = ApplyJob.objects.all()
+    # for j in jk:
+    #     print(j.id)
+
+
+
     if pk == 1:
         job.status = 'Pending'
     elif pk == 2:
@@ -308,8 +316,6 @@ def apply_status(request, pk, apply_id):
         job.status = 'Approved'
     elif pk == 4:
         job.status = 'Rejected'
-
-    # Save the changes to the database
     job.save()
 
     subject = 'Job Application update'
@@ -379,6 +385,11 @@ def update_job_status(request, job_id):
     return redirect('job_apply_display')
 
 
-def apply_candidate_profile(request,pk):
+# def apply_candidate_profile(request,pk):
+#     candidate = CandidateProfile.objects.get(id=pk)
+#     return render(request,'apply_candidate_profile.html',{'candidate':candidate})
+
+def apply_candidate_profile(request,pk,apply_id):
     candidate = CandidateProfile.objects.get(id=pk)
-    return render(request,'apply_candidate_profile.html',{'candidate':candidate})
+    return render(request,'apply_candidate_profile.html',{'candidate':candidate,'apply_id':apply_id})
+

@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'employer',
-    'candidate'
+    'candidate',
+    'django_extensions',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'JobPortal.urls'
@@ -128,9 +131,7 @@ MEDIA_URL = '/media/'
 
 
 AUTH_USER_MODEL = 'account.CustomUser'
-LOGIN_URL = '/company_login/'
-
-
+LOGIN_URL = 'account/company_login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
